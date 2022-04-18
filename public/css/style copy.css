@@ -1,0 +1,249 @@
+
+html {
+  overflow-y:scroll;
+
+}
+
+Body{
+  background-color: #D3D3D3;
+  margin: 20px auto;
+  width: 80%;
+}
+
+
+
+main{
+    min-height: 40em;
+}
+
+.multisida  {
+  width: 70%;
+  float: left;
+  background-color: yellow;
+  }
+
+
+/*Tabeller*/
+table  {
+  margin: 10px 0;
+  width: 65%;
+  background-color: lightblue;
+  border-collapse: collapse;
+  }
+
+th, td  {
+  border: 1px solid black;
+  padding: 5px;
+  }
+
+th {
+  height: 50px;
+}
+
+td {
+  text-align: center;
+}
+
+td:first-child {
+  color: darkgreen;
+  text-decoration: underline;
+}
+
+tr:nth-child(even) {
+  background-color: white;
+}
+
+/* Multisida */
+
+aside {
+    width: 30%;
+    float: right;
+    background-color: green;
+}
+
+
+.navbar_multi {
+  padding: 1em;
+  background-color: #fff;
+  border-top: 1px solid #000;
+  display: flex;
+    flex-direction: column;
+  justify-content: space-around;
+}
+
+.navbar_multi a {
+  background-color: #eee;
+  display: inline-block;
+  padding: 0.5em 1em;
+  border: 1px solid black;
+  text-decoration: none;
+  color: #000;
+  margin: 0.3em;
+}
+
+.navbar_multi a:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.navbar_multi .selected {
+    background-color: #ccc;
+    text-decoration: underline;
+}
+
+
+/* --- */
+
+/* Navbar */
+.navbar {
+  padding: 1em;
+  background-color: #fff;
+  border-top: 1px solid #000;
+  display: flex;
+  justify-content: space-around;
+}
+
+.navbar a {
+  background-color: #eee;
+  display: inline-block;
+  padding: 1em 2em;
+  border: 1px solid black;
+  text-decoration: none;
+  color: #000;
+  margin: 0.3em;
+}
+
+.navbar a:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.navbar .selected {
+    background-color: #ccc;
+    text-decoration: underline;
+}
+
+/* --- */
+
+
+
+/* Text och Rubriker */
+h1 {
+  text-align: center;
+  text-decoration: underline;
+}
+
+h2 {
+  font-style: italic;
+}
+
+.Brodtext1 {
+    padding-left: 5px;
+    font-size: 20px;
+}
+
+.Rubrik1 {
+  font-size: 30px;
+  font-style: bold;
+}
+
+/* --- */
+
+
+/* Bilder */
+
+header img {
+  width: 200px;
+  float:left;}
+
+  .bildc20F {
+    float:left;
+    width: 300px;
+  }
+
+/* --- */
+
+
+
+
+
+
+
+header{
+  background-color: black;
+  overflow:auto;
+}
+
+.site-title{
+  display: block;
+  padding-top: 1em;
+  padding-left: 50px;
+  font-size: 32px;
+  overflow: auto;
+  color:white;
+}
+
+.site-slogan {
+  display: block;
+  padding-left: 50px;
+  font-style: italic;
+  overflow: auto;
+  color:white;
+}
+
+/* Byline */
+
+.byline {
+  border: 3px dotted black;
+  overflow:auto;
+  clear:both;
+}
+
+.bylineText {
+  display: block;
+  padding-left: 10px;
+  overflow: auto;
+}
+
+.byline img {
+  float: left;
+}
+
+/* --- */
+
+
+
+.site-footer {
+  background-color: white;
+  padding: 2px;
+  text-align: center;
+  clear:both;
+}
+
+
+
+@media (max-width: 800px) {
+  Body  {
+    width: 300px;
+  }
+
+  .navbar {
+    flex-direction: column;
+  }
+
+  header img {
+    width:150px;
+  }
+
+  .site-title {
+    padding-left: 0;
+  }
+
+.site-slogan {
+  font-size: 0px;
+}
+  .bylineText {
+    clear:both;
+  }
+
+}

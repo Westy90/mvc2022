@@ -1,0 +1,31 @@
+{% extends "base.html.twig" %}
+
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<h1> Home </h1>
+
+
+<p class="important">
+    <img src="img/me-grilla.png" width="200px" alt="Martin">
+    <br><br>
+    Jag heter Martin och läser första året webbprogrammering på bth/dbwebb. Jag har tidigare läst ett av kurspaketen
+    och har nu hoppat på programmet. Vid sidan av mina studier så jobbar jag heltid som affärsanalytiker och min
+    förhoppning är att det jag lär mig här ska komma till nytt i mitt jobb. Dels genom ökad förstålese kring
+    utveckingsprocessen men även att kunna ta till mig nya analysverktyg som jag tror är möjliga att få
+    genom denna utbildning! Mitt stora intresse är teknik och infrastruktur där jag låter tunnelbanetåg
+    representera dessa intressen som gemensam nämnare.
+
+    <br><br>
+    För kännedom så har jag inte gått designkursen, så min sida lär nog inte bli en fantastisk skapelse
+    ur det perspektivet!
+
+    </p>
+
+    <p> <a href="{{ absolute_url("img/C20F.png") }}">Se bild på ett tunnelbanetåg av modellen C20F</a></p>
+
+
+
+{% endblock %}
