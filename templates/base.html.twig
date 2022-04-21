@@ -4,11 +4,11 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <!-- <link rel="icon" href="favicon.ico"> -->
-        <link rel="stylesheet" href="../css/style.css"/>
+        <link rel="stylesheet" href="/../css/style.css"/>
     </head>
     <body>
         <div class="siteheader">
-            <img class="header_img center" src="../img/C20F_header.png" alt="C20F">
+            <img class="header_img center" src="/../img/C20F_header.png" alt="C20F">
         </div>
 
         <div class="navbar">
@@ -20,6 +20,10 @@
                     <a href="{{ url("form-search") }}">Search</a>
                     <a href="{{ url("form-login") }}">Login</a>
                     <a href="{{ url("form-session") }}">Session</a>
+                    <a href="{{ url("dice-home") }}">Dice roll</a>
+                    <a href="{{ url("dice-hand-home") }}">Dice hand</a>
+
+
                 </ul>
             </nav>
         </div>
