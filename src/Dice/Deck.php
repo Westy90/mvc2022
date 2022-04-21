@@ -55,6 +55,13 @@ class Deck
         shuffle($this->deck);
     }
 
+    public function drawCard(): String
+    {
+        $card = array_pop($this->deck);
+
+        return $card->getSuit() . " " . $card->getValue();
+    }
+
 
 
     /*public function __construct()
