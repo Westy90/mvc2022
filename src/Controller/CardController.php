@@ -19,9 +19,7 @@ class CardController extends AbstractController
         $die = new \App\Dice\Dice();
 
         $data = [
-            'title' => 'Dice',
-            'array_num' => [],
-            'new_string' => "",
+            'title' => 'Card Deck - Home',
 
         ];
 
@@ -55,7 +53,7 @@ class CardController extends AbstractController
     /**
      * @Route("/card/deck", name="card-deck")
      */
-    public function roll(SessionInterface $session ): Response
+    public function deck(SessionInterface $session ): Response
     {
 
         $deck = $session->get("deck");
@@ -64,6 +62,28 @@ class CardController extends AbstractController
             'title' => 'Deck',
             'printed_cards' => $deck->getAllCards()
         ];
+
+        return $this->render('card/deck.html.twig', $data);
+    }
+
+
+    /**
+     * @Route("/card/deck/shuffle", name="card-deck-shuffle")
+     */
+    public function shuffle(SessionInterface $session ): Response
+    {
+
+
+        $deck = $session->get("deck");
+
+        $deck->shuffleDeck();
+
+        $data = [
+            'title' => 'Deck',
+            'printed_cards' => $deck->getAllCards()
+        ];
+
+        $session->set("deck", $deck);
 
 
         return $this->render('card/deck.html.twig', $data);

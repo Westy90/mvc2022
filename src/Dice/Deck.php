@@ -26,7 +26,11 @@ class Deck
 
             $value = strval($card->getValue());
 
-            if ($value == "11")
+            if ($value == "1")
+            {
+                $value = "ace";
+            }
+            elseif ($value == "11")
             {
                 $value = "jack";
             }
@@ -39,12 +43,16 @@ class Deck
                 $value = "king";
             }
 
-
             $to_return .= " " . $card->getSuit() . " " . $value . " |";
         }
 
         return $to_return;
 
+    }
+
+    public function shuffleDeck(): void
+    {
+        shuffle($this->deck);
     }
 
 
