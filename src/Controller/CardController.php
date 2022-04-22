@@ -23,33 +23,83 @@ class CardController extends AbstractController
             'title' => 'Card Deck - Home',
         ];
 
-        $session->set("deck", NULL);
+        //$session->set("deck", NULL);
 
-        //Funkar denna även när session är rensad? Blir den null då?
-        if ($session->get("deck") == NULL) {
-            $deck = new \App\Card\Deck();
-
-            $playing_deck = [
-                'clubs' => [1,2,3,4,5,6,7,8,9,10,11,12,13],
-                'diamonds' => [1,2,3,4,5,6,7,8,9,10,11,12,13],
-                'hearts' => [1,2,3,4,5,6,7,8,9,10,11,12,13],
-                'spades' => [1,2,3,4,5,6,7,8,9,10,11,12,13]
-            ];
-
-            foreach ($playing_deck as $suit=>$values) {
-
-                foreach ($values as $value) {
-
-                    $deck->add(New \App\Card\Card($suit, $value));
-
-                }
-            }
-            $session->set("deck", $deck);
+        if ($session->get("deck") == NULL)
+        {
+            return $this->redirectToRoute("card-deck-new");
         }
 
-
-        //Skapa kortleken i denna vy? (utan att visa den)
         return $this->render('card/home.html.twig', $data);
+    }
+
+    /**
+     * @Route("/card/deck/new", name="card-deck-new")
+     */
+    public function new(SessionInterface $session ): Response
+    {
+
+    $data = [
+        'title' => 'Card Deck - Home - Deck is resetted!',
+    ];
+
+    $deck = new \App\Card\Deck();
+
+    $playing_deck = [
+        'clubs' => [1,2,3,4,5,6,7,8,9,10,11,12,13],
+        'diamonds' => [1,2,3,4,5,6,7,8,9,10,11,12,13],
+        'hearts' => [1,2,3,4,5,6,7,8,9,10,11,12,13],
+        'spades' => [1,2,3,4,5,6,7,8,9,10,11,12,13]
+    ];
+
+    foreach ($playing_deck as $suit=>$values) {
+
+        foreach ($values as $value) {
+
+            $deck->add(New \App\Card\Card($suit, $value));
+
+        }
+    }
+    $session->set("deck", $deck);
+
+    return $this->render('card/home.html.twig', $data);
+    }
+
+    /**
+     * @Route("/card/deck2", name="card-deck-joker")
+     */
+    public function joker(SessionInterface $session ): Response
+    {
+
+
+
+    $deck = new \App\Card\Deck();
+
+    $playing_deck = [
+        'clubs' => [1,2,3,4,5,6,7,8,9,10,11,12,13],
+        'diamonds' => [1,2,3,4,5,6,7,8,9,10,11,12,13],
+        'hearts' => [1,2,3,4,5,6,7,8,9,10,11,12,13],
+        'spades' => [1,2,3,4,5,6,7,8,9,10,11,12,13],
+        'joker' => [0,0]
+    ];
+
+    foreach ($playing_deck as $suit=>$values) {
+
+        foreach ($values as $value) {
+
+            $deck->add(New \App\Card\Card($suit, $value));
+
+        }
+    }
+    $session->set("deck", $deck);
+
+
+    $data = [
+        'title' => 'Card Deck - with joker!',
+        'printed_cards' => $deck->showCardsArray()
+    ];
+
+    return $this->render('card/deck.html.twig', $data);
     }
 
     /**
@@ -61,8 +111,8 @@ class CardController extends AbstractController
         $deck = $session->get("deck");
 
         $data = [
-            'title' => 'Deck',
-            'printed_cards' => $deck->getAllCards()
+            'title' => 'Card Deck',
+            'printed_cards' => $deck->showCardsArray()
         ];
 
         return $this->render('card/deck.html.twig', $data);
@@ -82,7 +132,7 @@ class CardController extends AbstractController
 
         $data = [
             'title' => 'Deck',
-            'printed_cards' => $deck->getAllCards()
+            'printed_cards' => $deck->showCardsArray()
         ];
 
         $session->set("deck", $deck);
@@ -103,11 +153,9 @@ class CardController extends AbstractController
 
         $deck = $session->get("deck");
 
-        $drawn_card = $deck->drawCard($number);
-
         $data = [
             'title' => 'Deck',
-            'draw_card' => $drawn_card,
+            'printed_cards' => $deck->drawCardArray($number),
             'remaining_cards' => $deck->remainingCards()
         ];
 
@@ -117,16 +165,13 @@ class CardController extends AbstractController
     }
 
 
-
-
-
     /**
      * @Route("card/deck/deal/{players}/{cards}", name="card-deck-deal")
      */
     public function deal(
         SessionInterface $session,
-        int $players = 1,
-        int $cards = 1
+        int $players = 3,
+        int $cards = 4
     ): Response
     {
         $player = [];
@@ -138,18 +183,12 @@ class CardController extends AbstractController
         {
 
             $player[$i] = new \App\Card\Player();
-            $card = $deck->drawCardArray($cards);
-            $player[$i]->add($card);
+            $cardz = $deck->poppedArrayCards($cards);
+            $player[$i]->add($cardz);
 
-            $playerCards[$i] = $player[$i]->getCardsArray();
+            $playerCards[$i] = $player[$i]->showCardsArray();
 
         }
-
-
-
-        #$playerCards = [["katt", "häst"], ["hund", "elefant"]];
-
-        //$drawn_card = $deck->drawCard($number);
 
         $data = [
             'title' => 'Deck',

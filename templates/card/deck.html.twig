@@ -5,9 +5,36 @@
 {% block content %}
 <h1>{{ title }}</h1>
 
-<p>The deck: </p>
+<p>The cards in the deck: </p>
 
-<p> {{ printed_cards }} </p>
+    {% for card in printed_cards %}
+
+        {% for suit, value in card %}
+
+        <div class="card {{ suit }}">
+
+            <img src="/../img/{{ suit }}.png" alt="{{ suit }}">
+
+            {% if value == 11 %}
+            <div class="card_content"> J </div>
+            {% elseif value == 12 %}
+            <div class="card_content"> Q </div>
+            {% elseif value == 13 %}
+            <div class="card_content"> K </div>
+            {% elseif value == 1 %}
+            <div class="card_content"> A </div>
+            {% elseif value == 0 %}
+            <div class="card_content"> Joker </div>
+            {% else %}
+            <div class="card_content"> {{ value }} </div>
+
+            {% endif %}
+        </div>
+
+        {% endfor %}
+
+    {% endfor %}
+
 
 
 {% endblock %}

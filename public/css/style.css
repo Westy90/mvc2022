@@ -42,6 +42,15 @@ main{
   border: 3px solid red;
 }
 
+.joker {
+  border: 3px solid yellow;
+}
+
+
+
+.remaining {
+  clear: both;
+}
 
 /*Tabeller*/
 table  {

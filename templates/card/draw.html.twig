@@ -5,15 +5,40 @@
 {% block content %}
 <h1>{{ title }}</h1>
 
-<p>The drawn card: </p>
+<p>The drawn cards: </p>
 
-<p> {{ draw_card }} </p>
+<div class="cards">
+    {% for card in printed_cards %}
 
+        {% for suit, value in card %}
 
-<p>Cards remaining: </p>
+        <div class="card {{ suit }}">
 
-<p> {{ remaining_cards }} </p>
+            <img src="/../img/{{ suit }}.png" alt="{{ suit }}">
 
+            {% if value == 11 %}
+            <div class="card_content"> J </div>
+            {% elseif value == 12 %}
+            <div class="card_content"> Q </div>
+            {% elseif value == 13 %}
+            <div class="card_content"> K </div>
+            {% elseif value == 1 %}
+            <div class="card_content"> A </div>
+            {% elseif value == 0 %}
+            <div class="card_content"> Joker </div>
+            {% else %}
+            <div class="card_content"> {{ value }} </div>
+
+            {% endif %}
+        </div>
+
+        {% endfor %}
+
+    {% endfor %}
+</div>
+
+<div class="remaining"> Cards remaning in the deck: {{ remaining_cards }}
+</div>
 
 
 {% endblock %}

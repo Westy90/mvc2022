@@ -16,6 +16,20 @@ class Deck
         $this->deck[] = $card;
     }
 
+    public function showCardsArray(): array
+    {
+        $to_return = [];
+
+
+        foreach ($this->deck as $cards)
+        {
+            $to_return[] = [$cards->getSuit() => $cards->getValue()];
+        }
+
+        return $to_return;
+
+    }
+
     public function getAllCards(): string
     {
 
@@ -85,6 +99,23 @@ class Deck
         {
             $card = array_pop($this->deck);
 
+            $to_return[] = [$card->getSuit() => $card->getValue()];
+
+        }
+
+        return $to_return;
+
+    }
+
+
+    public function poppedArrayCards(int $number = 1): array
+    {
+        $to_return = [];
+
+        for ($i = 0; $i < $number; $i++)
+        {
+            $card = array_pop($this->deck);
+
             $to_return[] = $card;
 
         }
@@ -94,28 +125,9 @@ class Deck
     }
 
 
-
-
     public function remainingCards(): int
     {
         return count($this->deck);
     }
 
-
-
-    /*public function __construct()
-    {
-        $this->current_deck = self::deck;
-    }*/
-
-    public function roll(): int
-    {
-        $this->value = random_int(1, 6);
-        return $this->value;
-    }
-
-    public function getAsString(): string
-    {
-        return "[{$this->value}]";
-    }
 }

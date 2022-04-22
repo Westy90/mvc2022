@@ -5,11 +5,8 @@
 {% block content %}
 <h1>{{ title }}</h1>
 
-<p>The players: </p>
+<p>The cards that were given to the players: </p>
 
-
-
-{# read and display all flash messages #}
 <table>
     <tr>
         <th>Player</th>
@@ -35,6 +32,8 @@
             <div class="card_content"> K </div>
             {% elseif value == 1 %}
             <div class="card_content"> A </div>
+            {% elseif value == 0 %}
+            <div class="card_content"> Joker </div>
             {% else %}
             <div class="card_content"> {{ value }} </div>
 

@@ -27,52 +27,12 @@ class Player
 
     }
 
-    public function getCardsArray(): array {
-
-        return $this->hand->drawCardArray();
-    }
-
-
-
-    //Ta bort nedan..
-
-    public function getAllCards(): string
+    public function showCardsArray(): array 
     {
 
-        $to_return = "|";
-
-        foreach ($this->deck as $card)
-        {
-
-            $to_return .= $this->add_cards_print($card);
-        }
-
-        return $to_return;
-
+        return $this->hand->showCardsArray();
     }
 
-    protected function add_cards_print($card): string
-    {
-        $value = strval($card->getValue());
 
-        if ($value == "1")
-        {
-            $value = "ace";
-        }
-        elseif ($value == "11")
-        {
-            $value = "jack";
-        }
-        elseif ($value == "12")
-        {
-            $value = "queen";
-        }
-        elseif ($value == "13")
-        {
-            $value = "king";
-        }
 
-        return " " . $card->getSuit() . " " . $value . " |";
-
-    }
 }

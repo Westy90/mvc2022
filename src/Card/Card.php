@@ -17,17 +17,12 @@ class Card
 
     public function getSuit(): string
     {
-
         return $this->suit;
-
-
     }
 
     public function getValue(): int
     {
-
         return $this->value;
-
     }
 
 }
