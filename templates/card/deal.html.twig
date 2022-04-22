@@ -1,0 +1,54 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Dice{% endblock %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+
+<p>The players: </p>
+
+
+
+{# read and display all flash messages #}
+<table>
+    <tr>
+        <th>Player</th>
+        <th>Cards</th>
+    </tr>
+{% for playerId, players in playercards %}
+    <tr>
+    <td>{{ playerId + 1 }}</td>
+    <td>
+    {% for card in players %}
+
+        {% for suit, value in card %}
+
+        <div class="card {{ suit }}">
+
+            <img src="/../img/{{ suit }}.png" alt="{{ suit }}">
+
+            {% if value == 11 %}
+            <div class="card_content"> J </div>
+            {% elseif value == 12 %}
+            <div class="card_content"> Q </div>
+            {% elseif value == 13 %}
+            <div class="card_content"> K </div>
+            {% elseif value == 1 %}
+            <div class="card_content"> A </div>
+            {% else %}
+            <div class="card_content"> {{ value }} </div>
+
+            {% endif %}
+        </div>
+
+        {% endfor %}
+
+    {% endfor %}
+    </td>
+    </tr>
+{% endfor %}
+</table>
+
+<p>There are {{ remaining_cards }} cards remaning. </p>
+
+{% endblock %}

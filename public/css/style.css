@@ -17,6 +17,32 @@ main{
 }
 
 
+/* Card */
+
+.card {
+  background-color: white;
+  min-height: 100px;
+  width: 70px;
+  margin: 10px;
+  float:left;
+
+}
+
+.card_content {
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center 
+}
+
+.spades, .clubs {
+  border: 3px solid black;
+}
+
+.hearts, .diamonds {
+  border: 3px solid red;
+}
+
+
 /*Tabeller*/
 table  {
   margin: 10px 0;
