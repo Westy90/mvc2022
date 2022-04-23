@@ -75,6 +75,11 @@ class Deck
         shuffle($this->deck);
     }
 
+    public function sortDeck(): void 
+    {
+        asort($this->deck);
+    }
+
     public function drawCard(int $number = 1): string
     {
 

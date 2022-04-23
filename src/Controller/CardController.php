@@ -71,8 +71,6 @@ class CardController extends AbstractController
     public function joker(SessionInterface $session ): Response
     {
 
-
-
     $deck = new \App\Card\Deck();
 
     $playing_deck = [
@@ -109,6 +107,8 @@ class CardController extends AbstractController
     {
 
         $deck = $session->get("deck");
+
+        $deck->sortDeck();
 
         $data = [
             'title' => 'Card Deck',
