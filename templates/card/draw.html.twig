@@ -14,7 +14,7 @@
 
         <div class="card {{ suit }}">
 
-            <img src="/../img/{{ suit }}.png" alt="{{ suit }}">
+            <img src="{{ asset("img/" ~ suit ~ ".png") }}" alt="{{ suit }}">
 
             {% if value == 11 %}
             <div class="card_content"> J </div>
