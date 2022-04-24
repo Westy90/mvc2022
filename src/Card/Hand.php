@@ -7,20 +7,19 @@ use App\Card\Card;
 class Hand
 {
 
-    private $hand = [];
+    public $deck = [];
 
     public function add(Card $card): void
     {
-        $this->hand[] = $card;
+        $this->deck[] = $card;
     }
-
 
     public function showCardsArray(): array
     {
         $to_return = [];
 
 
-        foreach ($this->hand as $cards) 
+        foreach ($this->deck as $cards)
         {
             $to_return[] = [$cards->getSuit() => $cards->getValue()];
         }
@@ -28,5 +27,6 @@ class Hand
         return $to_return;
 
     }
+
 
 }

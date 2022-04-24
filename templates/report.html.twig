@@ -53,7 +53,40 @@ Här presenteras redovisningstexter för kursens kmom.
 <p> Något jag uppskattar är när kurserna hänger ihop på ett eller annat sätt. Exempelvis i oopython
     går vi igenom websequencediagram och i läshanvisningar i detta kursmoment används sådana i läsmaterialet på
     https://symfony.com/doc/current/introduction/http_fundamentals.html . Nu användes den ju in ett väldigt enkelt och 
-    lättsamt exempel. Men ändå bra.
+    lättsamt exempel. Men ändå bra. Det är en liten detalj men ändå nice tycker jag!
+    <br><br>
+    Arv innebär att en klass ärver från en annan klass, det blir en specialisering. I min kod så ser jag att jag kanske borde
+    använt Hand som en klass och sedan kunde Deck varit en specialisering då de delar mycket av sin funktionalitet. I en child
+    i ett arvförhållande kan man lägga till ny funktionalitet eller göra element mer "öppna", ex ändra private till public.
+    Man kan dock inte göra det omvända, att göra element till private som tidigare var public. Detta är eftersom ett barn
+    att ersätta en förälder i klassen och om man gjort det mer private så hade det inte gått att nå dessa för andra metoder 
+    som tidigare nådde dom i public för föräldern.
+
+    <br><br>
+    För deck och hand så använder jag arv. För jag ser det som att både har en funktion att hålla kort 
+    men att deck är en specialisering av hand med mer funktionalitet och metoder. Därav ärver deck-klassen från hand-klassen. 
+    Jag kunde också ha löst detta genom ett trait som haft de gemensamma koddelarna och sedan "kopierats in" i vardera klass
+    <br><br>
+
+    Association innebär att det finns en relation mellan två klasser. I min kod finns exempel där player har en hand och hand 
+    innehåller ett antal kort. Dessa två är två olika typer av relation. Den första, är composition, om player försvinner så kommer även
+    handen att försvinna, handen kan inte "leva" utan player. Den andra, mellan hand och card är det Aggregation, där korten är skapade 
+    utanför handen och sedan inlagda, de lever alltså utanför handen, och om handen skulle försvinna så finns korten kvar.
+
+    <br><br>
+    Interface innebär att ett antal metoder ska finnas i en klass. Det blir kanske som ett slags "omvänt API"? Att man kan specificera att 
+    ett interface ska vara ett visst antal metoder och om en klass har implementerat detta så vet man att ett antal metoder ska finnas, exempelvis
+    som en getmetod?
+
+    <br><br>
+    Jag tycker instruktionerna för uppgiften var lite väl sparsamma. Däremot så är videoföreläsningarna till dessa 
+    väldigt bra. Jag tycker generellt att det verkar som ett bra format med korta videoklipp än långa föreläsningar.
+
+    <br><br>
+    Mitt TIL är väl att jag har blivit någorlunda van att använda git, det har jag haft stora problem med i 
+    tidigare kurser av någon anledning. Men jag tycker videoserien Mikael gjorde för kmom01 i sin egen kanal (den på engelska)
+    var väldigt bra och lätt att följa! Härligt!
+
 </p>
 
 <h1> KMOM03 </h1>

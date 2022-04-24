@@ -3,12 +3,13 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        <!-- <link rel="icon" href="favicon.ico"> -->
-        <link rel="stylesheet" href="/../css/style.css"/>
+        <link rel="icon" href="{{ asset("favicon.ico") }}">
+        <link rel="stylesheet" href="{{ asset("css/style.css") }}"/>
+
     </head>
     <body>
         <div class="siteheader">
-            <img class="header_img center" src="/../img/C20F_header.png" alt="C20F">
+            <img class="header_img center" src="{{ asset("img/C20F_header.png") }}" alt="C20F">
         </div>
 
         <div class="navbar">

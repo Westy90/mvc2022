@@ -36,39 +36,4 @@ class CardControllerJson
         return $response;
     }
 
-
-
-    /**
-     * @Route("/api/lucky/number2")
-     */
-    public function number2(): Response
-    {
-        $this->number = random_int(0, 100);
-
-        $data = [
-            'message' => 'Welcome to the lucky number API',
-            'lucky-number' => $this->number
-        ];
-
-        return new JsonResponse($data);
-    }
-
-
-
-    /**
-     * @Route("/api/lucky/number/{min}/{max}")
-     */
-    public function number3(int $min, int $max): Response
-    {
-        $this->number = random_int($min, $max);
-
-        $data = [
-            'message' => 'Welcome to the lucky number API',
-            'min number' => $min,
-            'max number' => $max,
-            'lucky-number' => $this->number
-        ];
-
-        return new JsonResponse($data);
-    }
 }

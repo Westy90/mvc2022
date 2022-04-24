@@ -125,7 +125,6 @@ class CardController extends AbstractController
     public function shuffle(SessionInterface $session ): Response
     {
 
-
         $deck = $session->get("deck");
 
         $deck->shuffleDeck();
@@ -136,7 +135,6 @@ class CardController extends AbstractController
         ];
 
         $session->set("deck", $deck);
-
 
         return $this->render('card/deck.html.twig', $data);
     }
