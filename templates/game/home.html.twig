@@ -1,0 +1,33 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+
+
+<div>
+Välkommen till spelet 21! I detta spel tävlar du mot banken och ska
+få högst kort. Du kommer ta ett kort och sedan kan du bestämma om 
+du ska ta ett till kort eller stanna. Om du får över 21 så vinner banken.
+När du har stannat så är det bankens tur, och denne är inte medveten om vad
+du har gjort för tidigare val. Banken kommer, likt du precis gjort, ta kort 
+tills denne stannar eller har över 21. Banken vinner vid lika eller om 
+banken har mer än dig. Du vinner om banken får över 21.
+</div>
+<br>
+<div>
+    Välj nedan för att påbörja spelet. Lycka till!
+</div>
+
+<div class="navbar">
+    <nav>
+        <ul>
+            <a href="{{ url("play") }}">Starta spelet!</a>
+            <a href="{{ url("game-doc") }}">Dokumentation</a>
+        </ul>
+    </nav>
+</div>
+
+
+{% endblock %}

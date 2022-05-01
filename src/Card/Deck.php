@@ -29,10 +29,14 @@ class Deck extends Hand
             $to_return[] = [$card->getSuit() => $card->getValue()];
 
         }
-
         return $to_return;
-
     }
+
+    public function drawCard(): Card
+    {
+        return array_pop($this->deck);
+    }
+
 
     public function poppedArrayCards(int $number = 1): array
     {

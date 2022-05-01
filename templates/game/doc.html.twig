@@ -1,0 +1,53 @@
+{% extends "base.html.twig" %}
+
+
+{% block title %}{{title}}{% endblock %}
+
+{% block content %}
+
+<h1> {{title}} </h1>
+
+
+<h2> Flödesschema </h2>
+<div> Följande är flödesschema för spelet 21:
+<br><br>
+<img src="{{ asset("img/21processkarta.png")}}" alt="processkarta för 21-spel" width="100%">
+</div>
+
+<h2> Psuedokod: </h2>
+
+<div>
+
+    <img src="{{ asset("img/pseudocode.png")}}" alt="pseudokod för 21-spel">
+
+</div>
+
+<h2> Klasser: </h2>
+
+<h3> Card: </h3>
+<div>
+Fungerar som "noderna" i kortleken, är själva kortleken
+</div>
+
+<h3> Player: </h3>
+<div>
+Spelare i spelet. Banken kan vara en spelare.
+</div>
+
+<h3> Hand: </h3>
+<div>
+De kort som spelaren håller i handen
+</div>
+
+<h3> Deck: </h3>
+<div>
+Kortleken som innehåller korten i spelet. Extends från Hand
+</div>
+
+<h3> Game: </h3>
+<div>
+Klassen som innehåller spellogiken
+</div>
+
+
+{% endblock %}

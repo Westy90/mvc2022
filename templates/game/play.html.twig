@@ -1,0 +1,63 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+
+
+<p>The cards that were given to the players: </p>
+
+<table>
+    <tr>
+        <th>Player</th>
+        <th>Cards</th>
+    </tr>
+{% for playerId, players in playercards %}
+    <tr>
+    <td>{{ playerId + 1 }}</td>
+    <td>
+    {% for card in players %}
+
+        {% for suit, value in card %}
+
+        <div class="card {{ suit }}">
+
+            <img src="{{ asset("img/" ~ suit ~ ".png") }}" alt="{{ suit }}">
+
+            {% if value == 11 %}
+            <div class="card_content"> J </div>
+            {% elseif value == 12 %}
+            <div class="card_content"> Q </div>
+            {% elseif value == 13 %}
+            <div class="card_content"> K </div>
+            {% elseif value == 1 %}
+            <div class="card_content"> A </div>
+            {% elseif value == 0 %}
+            <div class="card_content"> Joker </div>
+            {% else %}
+            <div class="card_content"> {{ value }} </div>
+
+            {% endif %}
+        </div>
+
+        {% endfor %}
+
+    {% endfor %}
+    </td>
+    </tr>
+{% endfor %}
+</table>
+
+<div class="navbar">
+    <nav>
+        <ul>
+            <a href="{{ url("card-deck") }}">New card</a>
+            <a href="{{ url("card-deck-joker") }}">Stay</a>
+            <a href="{{ url("card-deck-shuffle") }}">Restart</a>
+        </ul>
+    </nav>
+</div>
+
+
+{% endblock %}

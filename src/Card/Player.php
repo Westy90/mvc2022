@@ -7,7 +7,7 @@ use App\Card\Hand;
 class Player
 {
 
-    private $hand;
+    public $hand;
 
 
     function __construct()
