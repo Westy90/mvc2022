@@ -26,7 +26,9 @@ class Deck extends Hand
         {
             $card = array_pop($this->deck);
 
+            //Känner osäkerhet om jag sksa lagra som nyckel/värde eller inte
             $to_return[] = [$card->getSuit() => $card->getValue()];
+            // $to_return[] = [$card->getSuit(), $card->getValue()];
 
         }
         return $to_return;

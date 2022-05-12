@@ -23,9 +23,10 @@ class Game
 
         $this->deck = $deck;
 
-        foreach ($this->deckArray as $suit=>$values) {
-
-            foreach ($values as $value) {
+        foreach ($this->deckArray as $suit=>$values)
+        {
+            foreach ($values as $value)
+            {
 
                 $deck->add(New \App\Card\Card($suit, $value));
             }
@@ -59,6 +60,56 @@ class Game
 
         return $this->player[$player]->showCardsArray();
     }
+
+    public function getSumArray($player): array
+    {
+        return $this->player[$player]->getSumArray();
+    }
+
+
+
+    public function getPlayerDataArray(): array {
+        $playerData = [];
+
+        for ($i = 0; $i < count($this->player) - 1; $i++) {
+            $playerData[$i]["cardsArray"] = $this->player[$i]->showCardsArray();
+            $playerData[$i]["sumArray"] = $this->player[$i]->getSumArray();
+        }
+
+        return $playerData;
+    }
+
+
+    /**
+    public function getPlayerDataArray(): array
+    {
+        $playerCards = [];
+        $playerSum = [];
+
+        for ($i = 0; $i < count($this->player) - 1; $i++)
+        {
+            $playerCards[$i] = $this->player[$i]->showCardsArray();
+
+            $playerSum[$i] = $this->player[$i]->getSumArray();
+        }
+        return [$playerCards, $playerSum];
+    }
+    */
+
+
+    /*
+
+
+
+*/
+
+
+
+
+
+
+
+
 
 
     /*

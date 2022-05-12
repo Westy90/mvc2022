@@ -33,6 +33,10 @@ class Player
         return $this->hand->showCardsArray();
     }
 
+    public function getSumArray(): array {
+        return $this->hand->getSumArray();
+    }
+
 
 
 }

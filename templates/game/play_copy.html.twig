@@ -5,7 +5,7 @@
 {% block content %}
 <h1>{{ title }}</h1>
 
-<h1>{{ dump(game.showCardsArray(0)) }}</h0>
+<h1>{{ dump(playerDataArray) }}</h1>
 
 
 <p>The cards that were given to the players: </p>
@@ -16,13 +16,17 @@
         <th>Kort</th>
         <th>Poäng</th>
     </tr>
-
+{% for playerId, playersData in playerDataArray %}
     <tr>
-    <td>1</td>
+    <td>{{ playerId + 1 }}</td>
 
+    
+    {% for cardAndSum in playersData %}
     <td>
 
-        {% for card in game.showCardsArray(0) %}
+        {% for sums, cards in cardAndSum %}
+
+        {% for card in cards %}
 
             {% for suit, value in card %}
 
@@ -46,16 +50,30 @@
                 {% endif %}
             </div>
 
-        {% endfor %}
-        {% endfor %}
-        </td>
-        <td>
-                <p>Ess som 1: {{game.getSumArray(0)[1]}}</p>
-                <p>Ess som 14: {{game.getSumArray(0)[1]}}</p>
+            {% endfor %}
 
+            {{ sums }}
+
+            {% for sum in sums %}
+
+            {{sum}}
+
+
+            {% endfor %}
+
+        {% endfor %}
         </td>
+
+
+
+
+    {% endfor %}
+    {% endfor %}
+
+
+
     </tr>
-
+{% endfor %}
 </table>
 
 <div class="navbar">

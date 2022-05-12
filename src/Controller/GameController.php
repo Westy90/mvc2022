@@ -59,7 +59,7 @@ class GameController extends AbstractController
 
         $game->dealCards(1, 0); //Ger ett kort till player1
 
-
+        /*
         $playerCards = [];
 
         for ($i = 0; $i < count($game->player) - 1; $i++)
@@ -67,11 +67,12 @@ class GameController extends AbstractController
             $playerCards[$i] = $game->player[$i]->showCardsArray();
 
         }
+        */
 
 
         $data = [
             'title' => 'Game - home',
-            'playercards' => $playerCards,
+            'game' => $game,
         ];
 
         return $this->render('game/play.html.twig', $data);

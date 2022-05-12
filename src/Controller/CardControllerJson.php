@@ -10,16 +10,35 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class CardControllerJson
 {
     private $number;
-
-
-
     /**
      * @Route("card/api/deck")
      */
+
     public function deck(SessionInterface $session): Response
     {
 
-        $deck = $session->get("deck");
+        if ($session->get("deck") == NULL)
+        {
+            $deck = new \App\Card\Deck();
+
+            $playing_deck = [
+                'clubs' => [1,2,3,4,5,6,7,8,9,10,11,12,13],
+                'diamonds' => [1,2,3,4,5,6,7,8,9,10,11,12,13],
+                'hearts' => [1,2,3,4,5,6,7,8,9,10,11,12,13],
+                'spades' => [1,2,3,4,5,6,7,8,9,10,11,12,13]
+            ];
+
+            foreach ($playing_deck as $suit=>$values) {
+
+                foreach ($values as $value) {
+
+                    $deck->add(New \App\Card\Card($suit, $value));
+                }
+            }
+        } else {
+            $deck = $session->get("deck");
+        }
+
 
         //sort($deck->showCardsArray()[0]);
 
