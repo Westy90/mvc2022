@@ -7,7 +7,6 @@ use App\Card\Hand;
 
 class Deck extends Hand
 {
-
     public function shuffleDeck(): void
     {
         shuffle($this->deck);
@@ -22,14 +21,12 @@ class Deck extends Hand
     {
         $to_return = [];
 
-        for ($i = 0; $i < $number; $i++)
-        {
+        for ($i = 0; $i < $number; $i++) {
             $card = array_pop($this->deck);
 
             //Känner osäkerhet om jag sksa lagra som nyckel/värde eller inte
             $to_return[] = [$card->getSuit() => $card->getValue()];
             // $to_return[] = [$card->getSuit(), $card->getValue()];
-
         }
         return $to_return;
     }
@@ -44,16 +41,13 @@ class Deck extends Hand
     {
         $to_return = [];
 
-        for ($i = 0; $i < $number; $i++)
-        {
+        for ($i = 0; $i < $number; $i++) {
             $card = array_pop($this->deck);
 
             $to_return[] = $card;
-
         }
 
         return $to_return;
-
     }
 
 
@@ -61,5 +55,4 @@ class Deck extends Hand
     {
         return count($this->deck);
     }
-
 }

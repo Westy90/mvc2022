@@ -9,16 +9,13 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class CardControllerJson
 {
-    private $number;
     /**
      * @Route("card/api/deck")
      */
 
     public function deck(SessionInterface $session): Response
     {
-
-        if ($session->get("deck") == NULL)
-        {
+        if ($session->get("deck") == null) {
             $deck = new \App\Card\Deck();
 
             $playing_deck = [
@@ -29,10 +26,8 @@ class CardControllerJson
             ];
 
             foreach ($playing_deck as $suit=>$values) {
-
                 foreach ($values as $value) {
-
-                    $deck->add(New \App\Card\Card($suit, $value));
+                    $deck->add(new \App\Card\Card($suit, $value));
                 }
             }
         } else {
@@ -54,5 +49,4 @@ class CardControllerJson
 
         return $response;
     }
-
 }

@@ -6,7 +6,6 @@ use App\Card\Card;
 
 class Game
 {
-
     public $deckArray = [
         'clubs' => [1,2,3,4,5,6,7,8,9,10,11,12,13],
         'diamonds' => [1,2,3,4,5,6,7,8,9,10,11,12,13],
@@ -20,18 +19,13 @@ class Game
 
     public function addDeck($deck): void
     {
-
         $this->deck = $deck;
 
-        foreach ($this->deckArray as $suit=>$values)
-        {
-            foreach ($values as $value)
-            {
-
-                $deck->add(New \App\Card\Card($suit, $value));
+        foreach ($this->deckArray as $suit=>$values) {
+            foreach ($values as $value) {
+                $deck->add(new \App\Card\Card($suit, $value));
             }
         }
-
     }
 
     public function addPlayer($player): void
@@ -48,17 +42,13 @@ class Game
 
     public function dealCards($number, $player): void
     {
-
-        for ($i = 0; $i < $number; $i++)
-        {
+        for ($i = 0; $i < $number; $i++) {
             $this->player[$player]->add([$this->deck->drawCard()]); //Behöver vara array
         }
-
     }
 
     public function showCardsArray($player): array
     {
-
         return $this->player[$player]->showCardsArray();
     }
 
@@ -69,7 +59,8 @@ class Game
 
 
 
-    public function getPlayerDataArray(): array {
+    public function getPlayerDataArray(): array
+    {
         $playerData = [];
 
         for ($i = 0; $i < count($this->player) - 1; $i++) {
@@ -81,13 +72,12 @@ class Game
     }
 
 
-    public function checkPlayerCards(): string {
+    public function checkPlayerCards(): string
+    {
         $to_return = "";
 
         if ($this->getSumArray(1)[0] > 21 and $this->getSumArray(1)[1] > 21) {
-
             $to_return = "lost";
-
         } elseif ($this->getSumArray(1)[0] == 21 or $this->getSumArray(1)[1] == 21) {
             $to_return = "won";
         }
@@ -95,7 +85,8 @@ class Game
         return $to_return;
     }
 
-    public function computerPlay(): string {
+    public function computerPlay(): string
+    {
         $this->dealCardsComputer();
 
         return $this->evaluate();
@@ -103,21 +94,16 @@ class Game
 
     public function dealCardsComputer(): void
     {
-        while ($this->getSumArray(0)[0] < 17 or $this->getSumArray(0)[1] < 17)
-        {
+        while ($this->getSumArray(0)[0] < 17 or $this->getSumArray(0)[1] < 17) {
             $this->dealCards(1, 0);
         }
     }
 
     public function evaluate(): string
     {
-        if ($this->getSumArray(0)[0] > 21 and $this->getSumArray(0)[1] > 21)
-        {
+        if ($this->getSumArray(0)[0] > 21 and $this->getSumArray(0)[1] > 21) {
             return "won";
-
-        }
-        else
-        {
+        } else {
             if ($this->getSumArray(0)[1] > 21) {
                 $computerBestScore = $this->getSumArray(0)[0];
             } else {
@@ -136,14 +122,5 @@ class Game
 
             return "lost";
         }
-
-
     }
-
-
-
-
-
 }
-
-

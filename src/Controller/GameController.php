@@ -12,14 +12,11 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class GameController extends AbstractController
 {
-
     /**
      * @Route("/game", name="game-home")
      */
     public function game(SessionInterface $session): Response
     {
-
-
         $game = new \App\Card\Game();
 
         $game->addDeck(new \App\Card\Deck());
@@ -42,7 +39,6 @@ class GameController extends AbstractController
      */
     public function doc(): Response
     {
-
         $data = [
             'title' => 'Game documentation',
         ];
@@ -56,7 +52,6 @@ class GameController extends AbstractController
      */
     public function play(SessionInterface $session): Response
     {
-
         $game = new \App\Card\Game();
 
         $game->addDeck(new \App\Card\Deck());
@@ -66,7 +61,7 @@ class GameController extends AbstractController
 
         $session->set('game', $game);
 
-        $outcome = Null;
+        $outcome = null;
 
         $data = [
             'title' => 'Game - home',
@@ -82,9 +77,8 @@ class GameController extends AbstractController
      */
     public function new(SessionInterface $session): Response
     {
-
         $game = $session->get("game");
-        $outcome = Null;
+        $outcome = null;
 
         $game->dealCards(1, 1); //Ger ett kort till player1
 
@@ -104,7 +98,6 @@ class GameController extends AbstractController
      */
     public function stay(SessionInterface $session): Response
     {
-
         $game = $session->get("game");
 
         $data = [
@@ -117,7 +110,6 @@ class GameController extends AbstractController
 
         return $this->render('game/play.html.twig', $data);
     }
-
 }
 
 
@@ -141,6 +133,3 @@ $data = [
     'remaining_cards' => $deck->remainingCards()
 ];
 */
-
-
-

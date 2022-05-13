@@ -6,7 +6,6 @@ use App\Card\Card;
 
 class Hand
 {
-
     public $deck = [];
     public $sum1 = 0; //Summa om ess räknas som 1
     public $sum14 = 0; //Summa om ess räknas som 13
@@ -35,16 +34,12 @@ class Hand
         $to_return = [];
 
 
-        foreach ($this->deck as $cards)
-        {
+        foreach ($this->deck as $cards) {
             // Tidigare:
             $to_return[] = [$cards->getSuit() => $cards->getValue()];
             //$to_return[] = [$cards->getSuit(), $cards->getValue()];
         }
 
         return $to_return;
-
     }
-
-
 }

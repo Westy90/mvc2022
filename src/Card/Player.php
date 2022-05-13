@@ -6,37 +6,29 @@ use App\Card\Hand;
 
 class Player
 {
-
     public $hand;
 
 
-    function __construct()
+    public function __construct()
     {
         $this->hand = new Hand();
-
     }
 
 
     public function add($cards): void
     {
-
-        foreach ($cards as $card)
-        {
+        foreach ($cards as $card) {
             $this->hand->add($card);
         }
-
     }
 
-    public function showCardsArray(): array 
+    public function showCardsArray(): array
     {
-
         return $this->hand->showCardsArray();
     }
 
-    public function getSumArray(): array {
+    public function getSumArray(): array
+    {
         return $this->hand->getSumArray();
     }
-
-
-
 }

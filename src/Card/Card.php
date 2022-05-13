@@ -4,7 +4,6 @@ namespace App\Card;
 
 class Card
 {
-
     public $suit = "";
     public $value = 0;
 
@@ -24,5 +23,4 @@ class Card
     {
         return $this->value;
     }
-
 }

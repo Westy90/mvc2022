@@ -15,7 +15,7 @@ class CardController extends AbstractController
     /**
      * @Route("/card", name="card-home")
      */
-    public function home( SessionInterface $session ): Response
+    public function home(SessionInterface $session): Response
     {
         $die = new \App\Dice\Dice();
 
@@ -25,8 +25,7 @@ class CardController extends AbstractController
 
         //$session->set("deck", NULL);
 
-        if ($session->get("deck") == NULL)
-        {
+        if ($session->get("deck") == null) {
             return $this->redirectToRoute("card-deck-new");
         }
 
@@ -36,44 +35,39 @@ class CardController extends AbstractController
     /**
      * @Route("/card/deck/new", name="card-deck-new")
      */
-    public function new(SessionInterface $session ): Response
+    public function new(SessionInterface $session): Response
     {
-
-    $data = [
+        $data = [
         'title' => 'Card Deck - Home - Deck is resetted!',
     ];
 
-    $deck = new \App\Card\Deck();
+        $deck = new \App\Card\Deck();
 
-    $playing_deck = [
+        $playing_deck = [
         'clubs' => [1,2,3,4,5,6,7,8,9,10,11,12,13],
         'diamonds' => [1,2,3,4,5,6,7,8,9,10,11,12,13],
         'hearts' => [1,2,3,4,5,6,7,8,9,10,11,12,13],
         'spades' => [1,2,3,4,5,6,7,8,9,10,11,12,13]
     ];
 
-    foreach ($playing_deck as $suit=>$values) {
-
-        foreach ($values as $value) {
-
-            $deck->add(New \App\Card\Card($suit, $value));
-
+        foreach ($playing_deck as $suit=>$values) {
+            foreach ($values as $value) {
+                $deck->add(new \App\Card\Card($suit, $value));
+            }
         }
-    }
-    $session->set("deck", $deck);
+        $session->set("deck", $deck);
 
-    return $this->render('card/home.html.twig', $data);
+        return $this->render('card/home.html.twig', $data);
     }
 
     /**
      * @Route("/card/deck2", name="card-deck-joker")
      */
-    public function joker(SessionInterface $session ): Response
+    public function joker(SessionInterface $session): Response
     {
+        $deck = new \App\Card\Deck();
 
-    $deck = new \App\Card\Deck();
-
-    $playing_deck = [
+        $playing_deck = [
         'clubs' => [1,2,3,4,5,6,7,8,9,10,11,12,13],
         'diamonds' => [1,2,3,4,5,6,7,8,9,10,11,12,13],
         'hearts' => [1,2,3,4,5,6,7,8,9,10,11,12,13],
@@ -81,31 +75,27 @@ class CardController extends AbstractController
         'joker' => [0,0]
     ];
 
-    foreach ($playing_deck as $suit=>$values) {
-
-        foreach ($values as $value) {
-
-            $deck->add(New \App\Card\Card($suit, $value));
-
+        foreach ($playing_deck as $suit=>$values) {
+            foreach ($values as $value) {
+                $deck->add(new \App\Card\Card($suit, $value));
+            }
         }
-    }
-    $session->set("deck", $deck);
+        $session->set("deck", $deck);
 
 
-    $data = [
+        $data = [
         'title' => 'Card Deck - with joker!',
         'printed_cards' => $deck->showCardsArray()
     ];
 
-    return $this->render('card/deck.html.twig', $data);
+        return $this->render('card/deck.html.twig', $data);
     }
 
     /**
      * @Route("/card/deck", name="card-deck")
      */
-    public function deck(SessionInterface $session ): Response
+    public function deck(SessionInterface $session): Response
     {
-
         $deck = $session->get("deck");
 
         $deck->sortDeck();
@@ -122,9 +112,8 @@ class CardController extends AbstractController
     /**
      * @Route("/card/deck/shuffle", name="card-deck-shuffle")
      */
-    public function shuffle(SessionInterface $session ): Response
+    public function shuffle(SessionInterface $session): Response
     {
-
         $deck = $session->get("deck");
 
         $deck->shuffleDeck();
@@ -146,9 +135,7 @@ class CardController extends AbstractController
     public function draw(
         SessionInterface $session,
         int $number = 1
-    ): Response
-    {
-
+    ): Response {
         $deck = $session->get("deck");
 
         $data = [
@@ -170,22 +157,18 @@ class CardController extends AbstractController
         SessionInterface $session,
         int $players = 3,
         int $cards = 4
-    ): Response
-    {
+    ): Response {
         $player = [];
         $playerCards = [];
 
         $deck = $session->get("deck");
 
-        for ($i = 0; $i < $players; $i++)
-        {
-
+        for ($i = 0; $i < $players; $i++) {
             $player[$i] = new \App\Card\Player();
             $cardz = $deck->poppedArrayCards($cards);
             $player[$i]->add($cardz);
 
             $playerCards[$i] = $player[$i]->showCardsArray();
-
         }
 
         $data = [
@@ -198,6 +181,4 @@ class CardController extends AbstractController
 
         return $this->render('card/deal.html.twig', $data);
     }
-
-
 }
