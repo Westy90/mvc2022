@@ -9,7 +9,7 @@
 <h1>{{ dump(outcome) }}</h1>
 
 
-<p>The cards that were given to the players: </p>
+<p>Dessa kort delades ut: </p>
 
 <table>
     <tr>
@@ -65,11 +65,13 @@
 
 </table>
 
+<h1>
 {% if outcome == "won" %}
-    You won!
+    Du vann!
 {% elseif outcome == "lost" %}
-    You lost!
+    Du förlorade!
 {% endif %}
+</h1>
 
 
 
@@ -77,10 +79,10 @@
     <nav>
         <ul>
             {% if outcome == null %}
-                <a href="{{ url("play") }}">New card</a>
+                <a href="{{ url("new") }}">New card</a>
+                <a href="{{ url("stay") }}">Stay</a>
             {% endif %}
-            <a href="{{ url("stay") }}">Stay</a>
-            <a href="{{ url("card-deck-shuffle") }}">Restart</a>
+            <a href="{{ url("play") }}">Restart</a>
         </ul>
     </nav>
 </div>

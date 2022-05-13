@@ -50,10 +50,37 @@ class GameController extends AbstractController
         return $this->render('game/doc.html.twig', $data);
     }
 
+
     /**
      * @Route("/game/play", name="play")
      */
     public function play(SessionInterface $session): Response
+    {
+
+        $game = new \App\Card\Game();
+
+        $game->addDeck(new \App\Card\Deck());
+        $game->deck->shuffleDeck();
+        $game->addPlayer(new \App\Card\Player()); //Banken är index 0
+        $game->addPlayer(new \App\Card\Player()); //Spelaren är index 1
+
+        $session->set('game', $game);
+
+        $outcome = Null;
+
+        $data = [
+            'title' => 'Game - home',
+            'game' => $game,
+            'outcome' => $outcome,
+        ];
+
+        return $this->render('game/play.html.twig', $data);
+    }
+
+    /**
+     * @Route("/game/new", name="new")
+     */
+    public function new(SessionInterface $session): Response
     {
 
         $game = $session->get("game");
@@ -61,18 +88,13 @@ class GameController extends AbstractController
 
         $game->dealCards(1, 1); //Ger ett kort till player1
 
-
-        if ($game->getSumArray(1)[0] > 21 and $game->getSumArray(1)[1] > 21) {
-
-            $outcome = "lost";
-
-        }
-
         $data = [
             'title' => 'Game - home',
             'game' => $game,
-            'outcome' => $outcome,
+            'outcome' => $game->checkPlayerCards(),
         ];
+
+        $session->set('game', $game);
 
         return $this->render('game/play.html.twig', $data);
     }
@@ -90,6 +112,8 @@ class GameController extends AbstractController
             'game' => $game,
             'outcome' => $game->computerPlay(),
         ];
+
+        $session->set('game', $game);
 
         return $this->render('game/play.html.twig', $data);
     }

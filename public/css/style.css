@@ -31,7 +31,7 @@ main{
 .card_content {
   font-weight: bold;
   font-size: 20px;
-  text-align: center 
+  text-align: center
 }
 
 .spades, .clubs {
@@ -55,7 +55,7 @@ main{
 /*Tabeller*/
 table  {
   margin: 10px 0;
-  width: 65%;
+  width: 100%;
   background-color: lightblue;
   border-collapse: collapse;
   }
