@@ -5,7 +5,8 @@
 {% block content %}
 <h1>{{ title }}</h1>
 
-<h1>{{ dump(game.showCardsArray(0)) }}</h0>
+<h1>{{ dump(game.showCardsArray(0)) }}</h1>
+<h1>{{ dump(outcome) }}</h1>
 
 
 <p>The cards that were given to the players: </p>
@@ -17,12 +18,18 @@
         <th>Poäng</th>
     </tr>
 
+    {% for i in 0..1 %}
     <tr>
-    <td>1</td>
+    <td>
+        {% if i == 0 %}
+        The bank
+        {% else %}
+        {{i}}
+        {% endif %}
+    </td>
 
     <td>
-
-        {% for card in game.showCardsArray(0) %}
+        {% for card in game.showCardsArray(i) %}
 
             {% for suit, value in card %}
 
@@ -45,24 +52,34 @@
 
                 {% endif %}
             </div>
-
         {% endfor %}
         {% endfor %}
         </td>
         <td>
-                <p>Ess som 1: {{game.getSumArray(0)[1]}}</p>
-                <p>Ess som 14: {{game.getSumArray(0)[1]}}</p>
+                <p>Om ess är 1: {{game.getSumArray(i)[0]}}</p>
+                <p>Om ess är 14: {{game.getSumArray(i)[1]}}</p>
 
         </td>
     </tr>
+    {% endfor %}
 
 </table>
+
+{% if outcome == "won" %}
+    You won!
+{% elseif outcome == "lost" %}
+    You lost!
+{% endif %}
+
+
 
 <div class="navbar">
     <nav>
         <ul>
-            <a href="{{ url("play") }}">New card</a>
-            <a href="{{ url("card-deck-joker") }}">Stay</a>
+            {% if outcome == null %}
+                <a href="{{ url("play") }}">New card</a>
+            {% endif %}
+            <a href="{{ url("stay") }}">Stay</a>
             <a href="{{ url("card-deck-shuffle") }}">Restart</a>
         </ul>
     </nav>

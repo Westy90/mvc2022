@@ -31,6 +31,7 @@ class Game
                 $deck->add(New \App\Card\Card($suit, $value));
             }
         }
+
     }
 
     public function addPlayer($player): void
@@ -78,6 +79,52 @@ class Game
 
         return $playerData;
     }
+
+    public function computerPlay(): string {
+        $this->dealCardsComputer();
+
+        return $this->evaluate();
+    }
+
+    public function dealCardsComputer(): void
+    {
+        while ($this->getSumArray(0)[0] < 17 and $this->getSumArray(0)[1] < 17)
+        {
+            $this->dealCards(1, 0);
+        }
+    }
+
+    public function evaluate(): string
+    {
+        if ($this->getSumArray(0)[0] > 21 and $this->getSumArray(0)[1] > 21)
+        {
+            return "won";
+
+        }
+        else
+        {
+            if ($this->getSumArray(0)[0] > $this->getSumArray(0)[1]) {
+                $computerBestScore = $this->getSumArray(0)[0];
+            } else {
+                $computerBestScore = $this->getSumArray(0)[1];
+            }
+
+            if ($this->getSumArray(1)[0] > $this->getSumArray(1)[1]) {
+                $userBestScore = $this->getSumArray(1)[0];
+            } else {
+                $userBestScore = $this->getSumArray(1)[1];
+            }
+
+            if ($userBestScore > $computerBestScore) {
+                return "won";
+            }
+
+            return "lost";
+        }
+
+
+    }
+
 
 
     /**

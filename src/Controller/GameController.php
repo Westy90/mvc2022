@@ -23,6 +23,7 @@ class GameController extends AbstractController
         $game = new \App\Card\Game();
 
         $game->addDeck(new \App\Card\Deck());
+        $game->deck->shuffleDeck();
         $game->addPlayer(new \App\Card\Player()); //Banken är index 0
         $game->addPlayer(new \App\Card\Player()); //Spelaren är index 1
 
@@ -56,28 +57,42 @@ class GameController extends AbstractController
     {
 
         $game = $session->get("game");
+        $outcome = Null;
 
-        $game->dealCards(1, 0); //Ger ett kort till player1
+        $game->dealCards(1, 1); //Ger ett kort till player1
 
-        /*
-        $playerCards = [];
 
-        for ($i = 0; $i < count($game->player) - 1; $i++)
-        {
-            $playerCards[$i] = $game->player[$i]->showCardsArray();
+        if ($game->getSumArray(1)[0] > 21 and $game->getSumArray(1)[1] > 21) {
+
+            $outcome = "lost";
 
         }
-        */
-
 
         $data = [
             'title' => 'Game - home',
             'game' => $game,
+            'outcome' => $outcome,
         ];
 
         return $this->render('game/play.html.twig', $data);
     }
 
+    /**
+     * @Route("/stay", name="stay")
+     */
+    public function stay(SessionInterface $session): Response
+    {
+
+        $game = $session->get("game");
+
+        $data = [
+            'title' => 'Game - home',
+            'game' => $game,
+            'outcome' => $game->computerPlay(),
+        ];
+
+        return $this->render('game/play.html.twig', $data);
+    }
 
 }
 
