@@ -24,7 +24,6 @@ class GameController extends AbstractController
         $game->addPlayer(new \App\Card\Player()); //Banken är index 0
         $game->addPlayer(new \App\Card\Player()); //Spelaren är index 1
 
-
         $session->set("game", $game);
 
         $data = [
@@ -45,7 +44,6 @@ class GameController extends AbstractController
 
         return $this->render('game/doc.html.twig', $data);
     }
-
 
     /**
      * @Route("/game/play", name="play")
@@ -111,25 +109,3 @@ class GameController extends AbstractController
         return $this->render('game/play.html.twig', $data);
     }
 }
-
-
-/*
-$player = [];
-
-
-$deck = $session->get("deck");
-
-for ($i = 0; $i < $players; $i++)
-{
-
-    $player[$i] = new \App\Card\Player();
-    $cardz = $deck->poppedArrayCards($cards);
-    $player[$i]->add($cardz);
-}
-
-$data = [
-    'title' => 'Deck',
-    'playercards' => $playerCards,
-    'remaining_cards' => $deck->remainingCards()
-];
-*/

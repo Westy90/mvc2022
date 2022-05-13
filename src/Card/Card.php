@@ -7,7 +7,6 @@ class Card
     public $suit = "";
     public $value = 0;
 
-
     public function __construct(string $suit, int $value)
     {
         $this->suit = $suit;

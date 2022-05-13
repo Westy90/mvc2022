@@ -33,7 +33,6 @@ class Hand
     {
         $to_return = [];
 
-
         foreach ($this->deck as $cards) {
             // Tidigare:
             $to_return[] = [$cards->getSuit() => $cards->getValue()];

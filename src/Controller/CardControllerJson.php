@@ -34,9 +34,6 @@ class CardControllerJson
             $deck = $session->get("deck");
         }
 
-
-        //sort($deck->showCardsArray()[0]);
-
         $deck->sortDeck();
 
         $data = [

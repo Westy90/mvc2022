@@ -33,7 +33,6 @@ class Game
         $this->player[] = $player;
     }
 
-
     public function drawCard(): Card
     //Returnerar ett kort
     {
@@ -57,8 +56,6 @@ class Game
         return $this->player[$player]->getSumArray();
     }
 
-
-
     public function getPlayerDataArray(): array
     {
         $playerData = [];
@@ -70,7 +67,6 @@ class Game
 
         return $playerData;
     }
-
 
     public function checkPlayerCards(): string
     {
