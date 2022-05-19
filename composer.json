@@ -108,8 +108,9 @@
             "@phpcpd",
             "@phpmd",
             "@phpstan"
-        ]
-
+        ],
+        "phpdoc": "tools/phpdoc/phpdoc",
+        "phpunit": "XDEBUG_MODE=coverage vendor/bin/phpunit"
     },
     "conflict": {
         "symfony/symfony": "*"
