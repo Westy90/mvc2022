@@ -17,13 +17,17 @@ class Game
 
     public $player = []; //Banken är index 0
 
-    public function addDeck($deck): void
+    public function addDeck($deck, $deckArray = Null): void
     {
         $this->deck = $deck;
 
-        foreach ($this->deckArray as $suit=>$values) {
+        if ($deckArray == Null) {
+            $deckArray = $this->deckArray;
+        }
+
+        foreach ($deckArray as $suit=>$values) {
             foreach ($values as $value) {
-                $deck->add(new \App\Card\Card($suit, $value));
+                $this->deck->add(new \App\Card\Card($suit, $value));
             }
         }
     }

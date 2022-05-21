@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * Test cases for class Player.
  */
-class PlayerTest extends TestCase
+class GameTest extends TestCase
 {
 
     /**
@@ -16,24 +16,15 @@ class PlayerTest extends TestCase
      */
     protected function setUp(): void
     {
-        $this->player = new Player();
+        $this->game = new Game();
 
         $deckArray = [
             'clubs' => [2],
             'hearts' => [1,3]
         ];
 
-        $arrayOfCards = [];
+        $this->game->addDeck($deckArray);
 
-        foreach ($deckArray as $suit=>$values)
-        {
-            foreach ($values as $value)
-            {
-                $arrayOfCards[] = new \App\Card\Card($suit, $value);
-            }
-        }
-
-        $this->player->add($arrayOfCards);
     }
 
     /**
