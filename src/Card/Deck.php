@@ -12,10 +12,12 @@ class Deck extends Hand
         shuffle($this->deck);
     }
 
+
     public function sortDeck(): void
     {
         asort($this->deck);
     }
+
 
     public function drawCardArray(int $number = 1): array
     {
