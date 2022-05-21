@@ -23,9 +23,8 @@ class GameTest extends TestCase
             'hearts' => [1,3]
         ];
 
-        $this->game->addDeck($deckArray);
+        $this->game->addDeck(new \App\Card\Deck(), $deckArray);
 
-        $this->game->deck->shuffleDeck();
         $this->game->addPlayer(new \App\Card\Player()); //Banken är index 0
         $this->game->addPlayer(new \App\Card\Player()); //Spelaren är index 1
 
@@ -42,30 +41,65 @@ class GameTest extends TestCase
         $this->assertInstanceOf("\App\Card\Deck", $this->game->deck);
         $this->assertInstanceOf("\App\Card\Player", $this->game->player[0]);
         $this->assertInstanceOf("\App\Card\Player", $this->game->player[1]);
-
-        //$res = $this->player->getSumArray();
-        //$this->assertNotEmpty($res);
     }
 
 
-    /** Test that method showCardsArray works
+    /** Test that method drawCard works and returns a card
      */
 
-    /* public function testShowCardsArray()
+    public function testDrawCard()
     {
-        $check = array(array("clubs" => 2), array("hearts" => 1), array("hearts" => 3));
 
-        $this->assertEquals($check, $this->player->showCardsArray());
-    }*/
+        $res = $this->game->drawCard();
+
+        $this->assertInstanceOf("\App\Card\Card", $res);
+
+    }
 
 
-    /** Test that method getSum returns the correct sum for the player
+    /** Tests that it works to deal one card to player one
      */
 
-    /* public function testGetSum()
+    public function testShowCardsArray()
     {
-        $this->assertEquals([6, 19], $this->player->getSumArray());
-    }*/
+        $this->game->dealCards(1,1);
+
+        $res = $this->game->showCardsArray(1);
+
+        $this->assertEquals(array("hearts" => 3), $res[0]);
+    }
+
+
+    /** Tests that it works to deal three cards to player one and that getSumArray works
+     */
+
+    public function testGetSumArray()
+    {
+        $this->game->dealCards(3,1);
+
+        $res = $this->game->getSumArray(1);
+
+        $this->assertEquals(array(6, 19), $res);
+    }
+
+    /** Tests sees that the game works to play. Player wins
+     */
+
+    public function testPlay()
+    {
+
+        $deckArray = [
+            'spades' => [5,6,7,8,11]
+        ];
+
+        $this->game->addDeck($this->game->deck, $deckArray);
+
+        $this->game->dealCards(2,1); //Ger korten 11 och 8, spades
+
+        $res = $this->game->computerPlay(); //Ger korten 7,6,5 /Player vinner
+
+        $this->assertEquals("won", $res);
+    }
 
 }
 
