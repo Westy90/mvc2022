@@ -18,94 +18,93 @@ class PlayerTest extends TestCase
     {
         $this->player = new Player();
 
-
         $deckArray = [
             'clubs' => [2],
-            'hearts' => [1,3],
-            'diamonds' => [13],
-            'spades' => [4]
+            'hearts' => [1,3]
         ];
+
+        $arrayOfCards = [];
 
         foreach ($deckArray as $suit=>$values)
         {
             foreach ($values as $value)
             {
-                $this->player->add(new \App\Card\Card($suit, $value));
+                $arrayOfCards[] = new \App\Card\Card($suit, $value);
             }
         }
+
+        $this->player->add($arrayOfCards);
     }
 
     /**
-     * Checks that the construction and adding of cards in SetUp works
+     * Checks that the  of player construction and adding of cards in SetUp works
      */
     public function testCreateDeck()
     {
-        $this->assertInstanceOf("\App\Card\Hand", $this->player);
+        $this->assertInstanceOf("\App\Card\Player", $this->player);
 
         $res = $this->player->getSumArray();
         $this->assertNotEmpty($res);
     }
 
 
-    /** Test that method shuffle decks works, that the
-     * original deck is shuffled after the method has been used
+    /** Test that method showCardsArray works
      */
-    public function testShuffleDeck()
+    public function testShowCardsArray()
     {
-        $oldDeck = clone $this->deck;
+        $check = array(array("clubs" => 2), array("hearts" => 1), array("hearts" => 3));
 
-        $this->deck->shuffleDeck();
-
-        $this->assertNotEquals($oldDeck, $this->deck);
+        $this->assertEquals($check, $this->player->showCardsArray());
     }
 
     /** Test that method sort decks works, that the
      * original deck is sorted after the method has been used
      */
-    public function testSortDeck()
+    /*public function testSortDeck()
     {
+
         $oldDeck = clone $this->deck;
 
         $this->deck->sortDeck();
 
         $this->assertNotEquals($oldDeck->showCardsArray(), $this->deck->showCardsArray());
-    }
+    }*/
 
 
     /** Test that method drawCardArray works, that
      * array with card suit and value is returned
      */
-    public function testDrawCardArray()
+    /*public function testDrawCardArray()
     {
         $res = $this->deck->drawCardArray();
 
         $this->assertEquals([['spades' => 4]], $res);
-    }
+    }*/
 
 
     /** Test that method drawCard works, that one card
      * is returned and that its of instance of class Card
      */
-    public function testDrawCard()
+    /*public function testDrawCard()
     {
         $res = $this->deck->drawCard();
 
         $this->assertInstanceOf("\App\Card\Card", $res);
-    }
+    }*/
 
 
     /** Test that method poppedArrayCards works, that one card
      * is returned and that its of instance of class Card.
      */
-    public function testpoppedArrayCards()
+    /*public function testpoppedArrayCards()
     {
         $res = $this->deck->poppedArrayCards();
         $this->assertInstanceOf("\App\Card\Card", $res[0]);
-    }
+    }*/
 
     /** Test that the reaming amount of cards is decreased after popping
      */
-    public function testremainingCards()
+    /*public function testremainingCards()
     {
         $before = $this->deck->remainingCards();
 
@@ -114,7 +113,7 @@ class PlayerTest extends TestCase
         $res = $this->deck->remainingCards();
 
         $this->assertEquals(4, $before - 1);
-    }
+    }*/
 
 }
 
