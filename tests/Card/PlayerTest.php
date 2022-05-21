@@ -34,6 +34,7 @@ class PlayerTest extends TestCase
         }
 
         $this->player->add($arrayOfCards);
+
     }
 
     /**
