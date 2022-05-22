@@ -39,7 +39,7 @@ class CardController extends AbstractController
     {
         $data = [
         'title' => 'Card Deck - Home - Deck is resetted!',
-    ];
+        ];
 
         $deck = new \App\Card\Deck();
 
@@ -48,9 +48,9 @@ class CardController extends AbstractController
         'diamonds' => [1,2,3,4,5,6,7,8,9,10,11,12,13],
         'hearts' => [1,2,3,4,5,6,7,8,9,10,11,12,13],
         'spades' => [1,2,3,4,5,6,7,8,9,10,11,12,13]
-    ];
+        ];
 
-        foreach ($playing_deck as $suit=>$values) {
+        foreach ($playing_deck as $suit => $values) {
             foreach ($values as $value) {
                 $deck->add(new \App\Card\Card($suit, $value));
             }
@@ -73,9 +73,9 @@ class CardController extends AbstractController
         'hearts' => [1,2,3,4,5,6,7,8,9,10,11,12,13],
         'spades' => [1,2,3,4,5,6,7,8,9,10,11,12,13],
         'joker' => [0,0]
-    ];
+        ];
 
-        foreach ($playing_deck as $suit=>$values) {
+        foreach ($playing_deck as $suit => $values) {
             foreach ($values as $value) {
                 $deck->add(new \App\Card\Card($suit, $value));
             }
@@ -86,7 +86,7 @@ class CardController extends AbstractController
         $data = [
         'title' => 'Card Deck - with joker!',
         'printed_cards' => $deck->showCardsArray()
-    ];
+        ];
 
         return $this->render('card/deck.html.twig', $data);
     }

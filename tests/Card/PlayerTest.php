@@ -9,7 +9,6 @@ use PHPUnit\Framework\TestCase;
  */
 class PlayerTest extends TestCase
 {
-
     /**
      * SetUp-method
      * Construct object and add cards
@@ -25,16 +24,13 @@ class PlayerTest extends TestCase
 
         $arrayOfCards = [];
 
-        foreach ($deckArray as $suit=>$values)
-        {
-            foreach ($values as $value)
-            {
+        foreach ($deckArray as $suit=>$values) {
+            foreach ($values as $value) {
                 $arrayOfCards[] = new \App\Card\Card($suit, $value);
             }
         }
 
         $this->player->add($arrayOfCards);
-
     }
 
     /**
@@ -65,8 +61,4 @@ class PlayerTest extends TestCase
     {
         $this->assertEquals([6, 19], $this->player->getSumArray());
     }
-
 }
-
-
-

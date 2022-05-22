@@ -28,8 +28,8 @@ class Hand
         return [$this->sum1, $this->sum14];
     }
 
-    public function showCardsArray(): array
     // Funktion som visar vilka kort som finns i $deck
+    public function showCardsArray(): array
     {
         $to_return = [];
 

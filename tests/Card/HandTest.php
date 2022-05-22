@@ -48,10 +48,8 @@ class HandTest extends TestCase
             'hearts' => [7,9]
         ];
 
-        foreach ($deckArray as $suit=>$values)
-        {
-            foreach ($values as $value)
-            {
+        foreach ($deckArray as $suit=>$values) {
+            foreach ($values as $value) {
                 $hand->add(new \App\Card\Card($suit, $value));
             }
         }
@@ -75,10 +73,8 @@ class HandTest extends TestCase
             'hearts' => [7,9]
         ];
 
-        foreach ($deckArray as $suit=>$values)
-        {
-            foreach ($values as $value)
-            {
+        foreach ($deckArray as $suit=>$values) {
+            foreach ($values as $value) {
                 $hand->add(new \App\Card\Card($suit, $value));
             }
         }
@@ -88,8 +84,4 @@ class HandTest extends TestCase
         $res = $hand->getSumArray();
         $this->assertEquals($array, $res);
     }
-
 }
-
-
-

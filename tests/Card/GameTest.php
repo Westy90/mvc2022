@@ -9,7 +9,6 @@ use PHPUnit\Framework\TestCase;
  */
 class GameTest extends TestCase
 {
-
     /**
      * SetUp-method
      * Construct object and add cards
@@ -27,7 +26,6 @@ class GameTest extends TestCase
 
         $this->game->addPlayer(new \App\Card\Player()); //Banken är index 0
         $this->game->addPlayer(new \App\Card\Player()); //Spelaren är index 1
-
     }
 
     /**
@@ -49,11 +47,9 @@ class GameTest extends TestCase
 
     public function testDrawCard()
     {
-
         $res = $this->game->drawCard();
 
         $this->assertInstanceOf("\App\Card\Card", $res);
-
     }
 
 
@@ -62,7 +58,7 @@ class GameTest extends TestCase
 
     public function testShowCardsArray()
     {
-        $this->game->dealCards(1,1);
+        $this->game->dealCards(1, 1);
 
         $res = $this->game->showCardsArray(1);
 
@@ -75,7 +71,7 @@ class GameTest extends TestCase
 
     public function testGetSumArray()
     {
-        $this->game->dealCards(3,1);
+        $this->game->dealCards(3, 1);
 
         $res = $this->game->getSumArray(1);
 
@@ -87,23 +83,16 @@ class GameTest extends TestCase
 
     public function testPlay()
     {
-
         $deckArray = [
             'spades' => [5,6,7,8,11]
         ];
 
         $this->game->addDeck($this->game->deck, $deckArray);
 
-        $this->game->dealCards(2,1); //Ger korten 11 och 8, spades
+        $this->game->dealCards(2, 1); //Ger korten 11 och 8, spades
 
         $res = $this->game->computerPlay(); //Ger korten 7,6,5 /Player vinner
 
         $this->assertEquals("won", $res);
     }
-
 }
-
-
-
-
-

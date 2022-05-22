@@ -9,7 +9,6 @@ use PHPUnit\Framework\TestCase;
  */
 class DeckTest extends TestCase
 {
-
     /**
      * SetUp-method
      * Construct object and add cards
@@ -25,10 +24,8 @@ class DeckTest extends TestCase
             'spades' => [4]
         ];
 
-        foreach ($deckArray as $suit=>$values)
-        {
-            foreach ($values as $value)
-            {
+        foreach ($deckArray as $suit=>$values) {
+            foreach ($values as $value) {
                 $this->deck->add(new \App\Card\Card($suit, $value));
             }
         }
@@ -114,8 +111,4 @@ class DeckTest extends TestCase
 
         $this->assertEquals(4, $before - 1);
     }
-
 }
-
-
-

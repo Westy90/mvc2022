@@ -43,7 +43,4 @@ class CardTest extends TestCase
         $res = $card->getSuit();
         $this->assertEquals("spades", $res);
     }
-
-
-
 }

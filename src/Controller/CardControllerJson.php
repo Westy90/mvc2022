@@ -25,7 +25,7 @@ class CardControllerJson
                 'spades' => [1,2,3,4,5,6,7,8,9,10,11,12,13]
             ];
 
-            foreach ($playing_deck as $suit=>$values) {
+            foreach ($playing_deck as $suit => $values) {
                 foreach ($values as $value) {
                     $deck->add(new \App\Card\Card($suit, $value));
                 }

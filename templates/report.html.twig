@@ -129,7 +129,47 @@ objekt direkt. Det uppfattar jag inte var tydligt i guiderna och föreläsningar
 
 <h1> KMOM04 </h1>
 
-<p> </p>
+<p>
+    Så därja, då var det KMOM04... Jag uppfattar det som ganska lätt
+    att skapa tester för min kod. Alla klasser förutom game var väl
+    mer eller mindre enkelt. Sedan kan ju dock diskutera hur kvalitatitva
+    dessa tester var. Jag använde mig mycket av assertEquals och
+    assertInstancesOf. När jag läste oopythonkursen så tycker jag
+    att vi gjorde med avancerad testning, ex mockade och använde flera
+    typer av assertions. I denna kurs upplevde jag inte att tanken
+    var att man skulle göra det så det blev på en ganska enkel nivå
+    i jämförelse med oopythonkursen. I mina metoder så returnerar de antingen
+    ett värde eller gör en enda operation. Det göra tt det blir enkelt att
+    göra en assertion. Därför kunde jag nå upp till 100% kodtäckning på allt
+    förutom game. Detta beror väl dels för jag kände att jag ville nöja mig
+    och inte maxxa på allt, samt att jag kände att jag inte helt nöjd med hur
+    mina metoder var skriva för game, men jag kände inte motivation att skriva om
+    dom och gör dom mer testbara.
+    <br><br>
+    För metoden addDeck i game så ändrade jag den för att göra den mer testbar.
+    Detta genom att tillåta att en annan mindre kortlek kunde användas i testet.
+    I spelet används ju en stor kortlek men för testning kändes det rimligare
+    att använda en liten kortlek, därav så ändrade jag så den accepterade
+    en mindre kortlek. Den gjordes också så att jag kunde fylla på den lilla kortleken
+    med fler kort eftersom det fanns behov av det i ett av testen för computerPlay().
+    <br><br>
+    Jag finner därmed att alla mina klasser är ganska bra skrivna för att testas
+    undantag för game-klassen. Och nog håller jag med om att några av metoderna i game 
+    inte är så "vackra", exempelvis evalutate(), och samtidigt valde jag att inte testa den.
+    Så det kanske kan ses som ett bevis att snygg och ren kod också är testbar.
+    <br><br>
+
+    Som vanligt så hamnade jag i lite problem även i detta kursmoment. Det gällde väl 
+    främst hur composer och script för phpunit inte riktigt fungerade. Jag bad om hjälp, 
+    jag fick även hjälp, men det löste inte problemet. Vilket som vanligt känns
+    frustrerande. Men men... Man får väl kämpa sig fram. Jag har även lite problem 
+    att förstå vilket arbetsflöde som det är tänkt att man ska ha med git.
+    Vet inte riktgt i vilken ordning jag ska göra git commit och git tags exempelvis.
+    Jag försökte vara noga att göra flera commits denna gång,
+    men det blev ändå svårt att göra tillräckligt många, för det var ju inte så 
+    mycket kod som skulle skrivas i detta kursmoment.
+
+</p>
 
 <h1> KMOM05 </h1>
 

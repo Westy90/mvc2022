@@ -17,15 +17,15 @@ class Game
 
     public $player = []; //Banken är index 0
 
-    public function addDeck($deck, $deckArray = Null): void
+    public function addDeck($deck, $deckArray = null): void
     {
         $this->deck = $deck;
 
-        if ($deckArray == Null) {
+        if ($deckArray == null) {
             $deckArray = $this->deckArray;
         }
 
-        foreach ($deckArray as $suit=>$values) {
+        foreach ($deckArray as $suit => $values) {
             foreach ($values as $value) {
                 $this->deck->add(new \App\Card\Card($suit, $value));
             }
@@ -37,8 +37,8 @@ class Game
         $this->player[] = $player;
     }
 
-    public function drawCard(): Card
     //Returnerar ett kort
+    public function drawCard(): Card
     {
         return $this->deck->drawCard();
     }
