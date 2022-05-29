@@ -1,0 +1,32 @@
+
+[33mDotenv Variables & Files[39m
+[33m========================[39m
+
+[33mScanned Files (in descending priority)[39m
+[33m--------------------------------------[39m
+
+ * [31m⨯[39m .env.local.php
+ * [32m✓[39m .env.student.local
+ * [31m⨯[39m .env.student
+ * [32m✓[39m .env.local
+ * [32m✓[39m .env
+
+[33mVariables[39m
+[33m---------[39m
+
+ ------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------ ----------------------------------- ----------------------------------- ----------------------------------- 
+ [32m Variable                [39m [32m Value                                                                                                                                                      [39m [32m .env.student.local                [39m [32m .env.local                        [39m [32m .env                              [39m 
+ ------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------ ----------------------------------- ----------------------------------- ----------------------------------- 
+  APP_SECRET                c971f576c26120c5c0e217076b89fdb5                                                                                                                             [33mn/a[39m                                 [33mn/a[39m                                 [32mc971f576c26120c5c0e217076b89fd...[39m  
+  DATABASE_HOST             blu-ray.student.bth.se                                                                                                                                       [32mblu-ray.student.bth.se[39m              [33mn/a[39m                                 [33mn/a[39m                                
+  DATABASE_NAME             mawj15                                                                                                                                                       [32mmawj15[39m                              [33mn/a[39m                                 [33mn/a[39m                                
+  DATABASE_PASSWORD         nUZGVzW6o3WC                                                                                                                                                 [32mnUZGVzW6o3WC[39m                        [33mn/a[39m                                 [33mn/a[39m                                
+  DATABASE_PORT             3306                                                                                                                                                         [32m3306[39m                                [33mn/a[39m                                 [33mn/a[39m                                
+  DATABASE_URL              mysql://%env(DATABASE_USER)%:%env(DATABASE_PASSWORD)%@%env(DATABASE_HOST)%:%env(DATABASE_PORT)%/%env(DATABASE_NAME)%?serverVersion=%env(DATABASE_VERSION)%   [32mmysql://%env(DATABASE_USER)%:%...[39m   mysql://dbadm:P%40ssw0rd@127.0...   sqlite:///%kernel.project_dir%...  
+  DATABASE_USER             mawj15                                                                                                                                                       [32mmawj15[39m                              [33mn/a[39m                                 [33mn/a[39m                                
+  DATABASE_VERSION          mariadb-10.3.34                                                                                                                                              [32mmariadb-10.3.34[39m                     [33mn/a[39m                                 [33mn/a[39m                                
+  MESSENGER_TRANSPORT_DSN   doctrine://default?auto_setup=0                                                                                                                              [33mn/a[39m                                 [33mn/a[39m                                 [32mdoctrine://default?auto_setup=...[39m  
+ ------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------ ----------------------------------- ----------------------------------- ----------------------------------- 
+
+[39;49m // [39;49mNote real values might be different between web and CLI.                             
+
