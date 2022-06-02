@@ -1,0 +1,50 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Create{% endblock %}
+
+{% block content %}
+
+{# read and display all flash messages #}
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="flash-{{ label }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
+
+<form action="/train/create_process" method="post">
+    <fieldset>
+    <legend>Add a train</legend>
+    <p>
+        <label>Name:
+            <input type="text" name="name" value="">
+        </label>
+    </p>
+    <p>
+        <label>Amount made:
+            <input type="number" name="amountMade" value="">
+        </label>
+    </p>
+    <p>
+        <label>Year made:
+            <input type="number" name="yearMade" value="">
+        </label>
+    </p>
+    <p>
+        <label>End of production (lastYearMade):
+            <input type="number" name="lastYearMade" value="">
+        </label>
+    </p>
+    <p>
+        <label>Year exit service:
+            <input type="number" name="exitService" value="">
+        </label>
+    </p>
+    <p>
+        <input type="submit" value="Lägg till">
+    </p>
+    </fieldset>
+</form>
+
+{% endblock %}
