@@ -1,0 +1,50 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+
+<p>Dessa kort delades ut: </p>
+
+<table>
+    <tr>
+        <th>Spelare</th>
+        <th>Kort</th>
+        <th>Poäng</th>
+    </tr>
+
+    <tr>
+    <td>
+        ...
+    </td>
+
+    <td>
+        {% for train in trains %}
+
+            {{ trains->getName() }}
+
+        {% endfor %}
+        </td>
+        <td>
+            blaha
+
+        </td>
+    </tr>
+
+</table>
+
+
+
+
+<div class="navbar">
+    <nav>
+        <ul>
+            <a href="{{ url("new") }}">New card</a>
+            <a href="{{ url("stay") }}">Stay</a>
+        </ul>
+    </nav>
+</div>
+
+
+{% endblock %}

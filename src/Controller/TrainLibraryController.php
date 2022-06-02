@@ -17,14 +17,22 @@ class TrainLibraryController extends AbstractController
     #[Route('/train/library', name: 'library-home')]
     public function index(): Response
     {
-        return $this->render('train_library/index.html.twig', [
-            'controller_name' => 'TrainLibraryController',
-        ]);
+
+        $trains = $TrainLibraryRepository
+            ->findAll();
+
+        $data = [
+            'title' => 'Card Deck - Home',
+            'trains' => $trains,
+            'controller_name' => 'TrainLibraryController'
+
+        ];
+
+
+
+
+        return $this->render('train_library/home.html.twig', $data);
     }
-
-
-
-
 
     /**
      * @Route(
@@ -38,7 +46,6 @@ class TrainLibraryController extends AbstractController
         return $this->render('train_library/create.html.twig');
     }
 
-
     /**
     * @Route("/train/create_process", name="create_train_process")
     */
@@ -48,11 +55,18 @@ class TrainLibraryController extends AbstractController
     ): Response {
         $entityManager = $doctrine->getManager();
 
-        $train = new TrainLibrary();
-        
-        $train->setName($request->request->get('name'));
+        $train = new TrainLibrary(
+            $request->request->get('name'),
+            intval($request->request->get('amountMade')),
+            intval($request->request->get('yearMade')),
+            intval($request->request->get('lastYearMade')),
+            intval($request->request->get('exitService')),
+            $request->request->get('picture')
+        );
+
+        //$train->setName($request->request->get('name'));
         //$train->setName('Train_' . rand(1, 9));
-        $train->setYearMade(rand(100, 999));
+        //$train->setYearMade(rand(100, 999));
 
         // tell Doctrine you want to (eventually) save the train
         // (no queries yet)

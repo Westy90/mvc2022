@@ -31,6 +31,29 @@ class TrainLibrary
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $picture;
 
+    /**
+     * Constructor to create a Train.
+     *
+     * @param string $name The name of train.
+     * @param int    $age  The age of the person.
+     */
+    public function __construct( 
+        string $name,
+        ?int $amount_made = NULL,
+        ?int $year_made = NULL,
+        ?int $last_year_made = NULL,
+        ?int $exit_service = NULL,
+        ?string $picture = NULL
+    )
+    {
+        $this->name = $name;
+        $this->amount_made = $amount_made;
+        $this->year_made = $year_made;
+        $this->last_year_made = $last_year_made;
+        $this->exit_service = $exit_service;
+        $this->picture = $picture;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
