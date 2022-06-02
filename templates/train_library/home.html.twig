@@ -5,42 +5,54 @@
 {% block content %}
 <h1>{{ title }}</h1>
 
-<p>Dessa kort delades ut: </p>
 
+
+{{ dump(trains) }}
+
+{# read and display all flash messages #}
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="flash-{{ label }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
+
+
+<p>These are the trains in the database: </p>
 <table>
     <tr>
-        <th>Spelare</th>
-        <th>Kort</th>
-        <th>Poäng</th>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Units made</th>
+        <th>Production started</th>
+        <th>Production ceased</th>
+        <th>End of service</th>
+        <th>Image</th>
     </tr>
 
-    <tr>
-    <td>
-        ...
-    </td>
-
-    <td>
         {% for train in trains %}
+            <tr>
 
-            {{ trains->getName() }}
+                {% for data in train.getDataArray %}
+                    <td>
+                        {{ data }}
+                    </td>
+                {% endfor %}
 
+                <td>
+                    <img src="{{ train.getPicture }}" width="150" alt="Image of {{ train.getName }}">
+                </td>
+
+            <tr>
         {% endfor %}
-        </td>
-        <td>
-            blaha
-
-        </td>
-    </tr>
-
 </table>
-
-
 
 
 <div class="navbar">
     <nav>
         <ul>
-            <a href="{{ url("new") }}">New card</a>
+            <a href="{{ url("create_train") }}">Create new</a>
             <a href="{{ url("stay") }}">Stay</a>
         </ul>
     </nav>

@@ -15,20 +15,18 @@ use Symfony\Component\Routing\Annotation\Route;
 class TrainLibraryController extends AbstractController
 {
     #[Route('/train/library', name: 'library-home')]
-    public function index(): Response
+    public function index(TrainLibraryRepository $TrainLibraryRepository): Response
     {
 
         $trains = $TrainLibraryRepository
             ->findAll();
 
         $data = [
-            'title' => 'Card Deck - Home',
+            'title' => 'Train Library - Home',
             'trains' => $trains,
             'controller_name' => 'TrainLibraryController'
 
         ];
-
-
 
 
         return $this->render('train_library/home.html.twig', $data);
@@ -43,6 +41,7 @@ class TrainLibraryController extends AbstractController
      */
     public function createTrain(): Response
     {
+
         return $this->render('train_library/create.html.twig');
     }
 
@@ -51,7 +50,8 @@ class TrainLibraryController extends AbstractController
     */
     public function createTrainProcess(
         ManagerRegistry $doctrine,
-        Request $request
+        Request $request,
+        TrainLibraryRepository $TrainLibraryRepository
     ): Response {
         $entityManager = $doctrine->getManager();
 
@@ -75,7 +75,21 @@ class TrainLibraryController extends AbstractController
         // actually executes the queries (i.e. the INSERT query)
         $entityManager->flush();
 
-        return new Response('Saved new train with id '.$train->getId());
+
+        $trains = $TrainLibraryRepository
+        ->findAll();
+
+        $data = [
+            'title' => 'Train Library - Home',
+            'trains' => $trains,
+            'controller_name' => 'TrainLibraryController'
+        ];
+
+        $this->addFlash("info", 'Saved new train with id '.$train->getId());
+
+        return $this->render('train_library/home.html.twig', $data);
+
+        //return new Response('Saved new train with id '.$train->getId());
     }
 
 
