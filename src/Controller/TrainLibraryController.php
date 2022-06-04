@@ -24,10 +24,10 @@ class TrainLibraryController extends AbstractController
         $data = [
             'title' => 'Train Library - Home',
             'trains' => $trains,
+            'infoBox' => "Showing all the trains in the database:",
             'controller_name' => 'TrainLibraryController'
 
         ];
-
 
         return $this->render('train_library/home.html.twig', $data);
     }
@@ -69,10 +69,6 @@ class TrainLibraryController extends AbstractController
             intval($request->request->get('exitService')),
             $request->request->get('picture')
         );
-
-        //$train->setName($request->request->get('name'));
-        //$train->setName('Train_' . rand(1, 9));
-        //$train->setYearMade(rand(100, 999));
 
         // tell Doctrine you want to (eventually) save the train
         // (no queries yet)
@@ -116,14 +112,25 @@ class TrainLibraryController extends AbstractController
      * @Route("/train/show/{id}", name="train_by_id")
      */
     public function showtrainById(
-        trainRepository $trainRepository,
+        TrainLibraryRepository $TrainLibraryRepository,
         int $id
     ): Response {
-        $train = $trainRepository
+        $train = $TrainLibraryRepository
             ->find($id);
 
-        return $this->json($train);
+
+        $data = [
+        'title' => 'Train Library - Details for one train',
+        'trains' => [$train],
+        'infoBox' => "Showing details for one train",
+        'controller_name' => 'TrainLibraryController'
+
+        ];
+
+    return $this->render('train_library/home.html.twig', $data);
     }
+
+
 
 
 
