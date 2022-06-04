@@ -1,8 +1,9 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Create{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 
 {% block content %}
+<h1>{{ title }}</h1>
 
 {# read and display all flash messages #}
 {% for label, messages in app.flashes %}
@@ -13,9 +14,10 @@
     {% endfor %}
 {% endfor %}
 
-<form action="/train/create_process" method="post">
+
+<form action="{{action}}" method="post">
     <fieldset>
-    <legend>Add a train</legend>
+    <legend>{{formTitle}} a train</legend>
     <p>
         <label>Name:
             <input type="text" name="name" value="">
@@ -42,12 +44,12 @@
         </label>
     </p>
     <p>
-        <label>Bildlänk:
+        <label>Url picture:
             <input type="text" name="picture">
         </label>
     </p>
     <p>
-        <input type="submit" value="Add">
+        <input type="submit" value="{{formTitle}}">
     </p>
     </fieldset>
 </form>

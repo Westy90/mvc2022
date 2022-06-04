@@ -41,8 +41,14 @@ class TrainLibraryController extends AbstractController
      */
     public function createTrain(): Response
     {
+        $data = [
+            'title' => 'Train Library - Create',
+            'action' => "create_process",
+            'formTitle' => "Create",
+            'controller_name' => 'TrainLibraryController'
+        ];
 
-        return $this->render('train_library/create.html.twig');
+        return $this->render('train_library/create.html.twig', $data);
     }
 
     /**
