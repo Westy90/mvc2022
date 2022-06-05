@@ -50,9 +50,11 @@
                 </td>
 
                 <td>
-                <a href="{{path("train_update", { 'id': train.getId })}}">Update</a>
+                    <a href="{{path("train_update", { 'id': train.getId })}}">Update</a>
+                    <a href="{{path("train_delete_by_id", { 'id': train.getId })}}">Delete</a>
 
                 </td>
+
 
             <tr>
         {% endfor %}

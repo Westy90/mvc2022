@@ -37,8 +37,8 @@ class TrainLibrary
      * @param string $name The name of train.
      * @param int    $age  The age of the person.
      */
-    public function __construct( 
-        string $name,
+    public function __construct(
+        string $name = NULL,
         ?int $amount_made = NULL,
         ?int $year_made = NULL,
         ?int $last_year_made = NULL,

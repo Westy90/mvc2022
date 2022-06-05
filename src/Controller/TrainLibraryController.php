@@ -29,6 +29,7 @@ class TrainLibraryController extends AbstractController
 
         ];
 
+
         return $this->render('train_library/home.html.twig', $data);
     }
 
@@ -39,12 +40,17 @@ class TrainLibraryController extends AbstractController
      *      methods={"GET","HEAD"}
      * )
      */
-    public function createTrain(): Response
+    public function createTrain(
+        TrainLibraryRepository $TrainLibraryRepository
+    ): Response
     {
+        $train = new TrainLibrary(); //Dummy train för att använda samma vy i C och U
+
         $data = [
             'title' => 'Train Library - Create',
             'action' => "create_process",
             'formTitle' => "Create",
+            'trains' => [new TrainLibrary()],
             'controller_name' => 'TrainLibraryController'
         ];
 
@@ -125,31 +131,7 @@ class TrainLibraryController extends AbstractController
 
 
 
-
     /**
-     * @Route("/train/delete/{id}", name="train_delete_by_id")
-     */
-    public function deletetrainById(
-        ManagerRegistry $doctrine,
-        int $id
-    ): Response {
-        $entityManager = $doctrine->getManager();
-        $train = $entityManager->getRepository(train::class)->find($id);
-
-        if (!$train) {
-            throw $this->createNotFoundException(
-                'No train found for id '.$id
-            );
-        }
-
-        $entityManager->remove($train);
-        $entityManager->flush();
-
-        return $this->redirectToRoute('train_show_all');
-    }
-
-
-        /**
      * @Route(
      *      "/train/update/{id}",
      *      name="train_update",
@@ -158,16 +140,20 @@ class TrainLibraryController extends AbstractController
      */
     public function updateTrain(
         ManagerRegistry $doctrine,
+        TrainLibraryRepository $TrainLibraryRepository,
         int $id
     ): Response
     {
         $entityManager = $doctrine->getManager();
-        $train = $entityManager->getRepository(train::class)->find($id);
+        $train = $TrainLibraryRepository
+        ->find($id);
 
         $data = [
             'title' => 'Train Library - Update',
-            'action' => "create_process",
-            'formTitle' => "Create",
+            'action' => "update_process",
+            'trains' => [$train],
+            'formTitle' => "update",
+            'toUpdate' => $id,
             'controller_name' => 'TrainLibraryController'
         ];
 
@@ -175,25 +161,43 @@ class TrainLibraryController extends AbstractController
     }
 
     /**
-     * @Route("/train/update_process", name="train_update_process")
-     */
+    * @Route("/train/update/update_process", name="update_process")
+    */
     public function updateTrainProcess(
         ManagerRegistry $doctrine,
-        int $id
+        Request $request,
+        TrainLibraryRepository $TrainLibraryRepository
     ): Response {
+
         $entityManager = $doctrine->getManager();
-        $train = $entityManager->getRepository(train::class)->find($id);
+        $train = $TrainLibraryRepository
+        ->find($request->request->get('id'));
 
-        if (!$train) {
-            throw $this->createNotFoundException(
-                'No train found for id '.$id
-            );
-        }
+        $train->setName($request->request->get('name'));
+        $train->setAmountMade($request->request->get('amountMade'));
+        $train->setYearMade($request->request->get('yearMade'));
+        $train->setLastYearMade($request->request->get('lastYearMade'));
+        $train->setExitService($request->request->get('exitService'));
+        $train->setPicture($request->request->get('picture'));
 
-        $train->setValue($value);
+        // tell Doctrine you want to (eventually) save the train
+        // (no queries yet)
+        $entityManager->persist($train);
+
         $entityManager->flush();
 
-        return $this->redirectToRoute('train_show_all');
+        $this->addFlash("info", 'Train with id '.$train->getId().' has been update');
+
+        return $this->redirectToRoute('library-home');
+
     }
+
+
+
+
+
+
+
+
 
 }

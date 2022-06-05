@@ -20,34 +20,39 @@
     <legend>{{formTitle}} a train</legend>
     <p>
         <label>Name:
-            <input type="text" name="name" value="">
+            <input type="text" name="name" value="{{trains[0].getName}}">
         </label>
     </p>
     <p>
         <label>Amount made:
-            <input type="number" name="amountMade" value="">
+            <input type="number" name="amountMade" value="{{trains[0].getAmountMade}}">
         </label>
     </p>
     <p>
         <label>Year made:
-            <input type="number" name="yearMade" value="">
+            <input type="number" name="yearMade" value="{{trains[0].getYearMade}}">
         </label>
     </p>
     <p>
         <label>End of production (lastYearMade):
-            <input type="number" name="lastYearMade" value="">
+            <input type="number" name="lastYearMade" value="{{trains[0].getLastYearMade}}">
         </label>
     </p>
     <p>
         <label>Year exit service:
-            <input type="number" name="exitService">
+            <input type="number" name="exitService" value="{{trains[0].getExitService}}">
         </label>
     </p>
     <p>
         <label>Url picture:
-            <input type="text" name="picture">
+            <input type="text" name="picture" value="{{trains[0].getPicture}}">
         </label>
     </p>
+
+    <p>
+    <input type="hidden" name="id" value="{{trains[0].Id}}">
+    </p>
+
     <p>
         <input type="submit" value="{{formTitle}}">
     </p>
