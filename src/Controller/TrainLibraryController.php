@@ -77,21 +77,12 @@ class TrainLibraryController extends AbstractController
         // actually executes the queries (i.e. the INSERT query)
         $entityManager->flush();
 
-
         $trains = $TrainLibraryRepository
         ->findAll();
 
-        $data = [
-            'title' => 'Train Library - Home',
-            'trains' => $trains,
-            'controller_name' => 'TrainLibraryController'
-        ];
-
         $this->addFlash("info", 'Saved new train with id '.$train->getId());
 
-        return $this->render('train_library/home.html.twig', $data);
-
-        //return new Response('Saved new train with id '.$train->getId());
+        return $this->redirectToRoute('library-home');
     }
 
 
@@ -158,13 +149,37 @@ class TrainLibraryController extends AbstractController
     }
 
 
-    /**
-     * @Route("/train/update/{id}/{value}", name="train_update")
+        /**
+     * @Route(
+     *      "/train/update/{id}",
+     *      name="train_update",
+     *      methods={"GET","HEAD"}
+     * )
      */
-    public function updatetrain(
+    public function updateTrain(
         ManagerRegistry $doctrine,
-        int $id,
-        int $value
+        int $id
+    ): Response
+    {
+        $entityManager = $doctrine->getManager();
+        $train = $entityManager->getRepository(train::class)->find($id);
+
+        $data = [
+            'title' => 'Train Library - Update',
+            'action' => "create_process",
+            'formTitle' => "Create",
+            'controller_name' => 'TrainLibraryController'
+        ];
+
+        return $this->render('train_library/create.html.twig', $data);
+    }
+
+    /**
+     * @Route("/train/update_process", name="train_update_process")
+     */
+    public function updateTrainProcess(
+        ManagerRegistry $doctrine,
+        int $id
     ): Response {
         $entityManager = $doctrine->getManager();
         $train = $entityManager->getRepository(train::class)->find($id);

@@ -29,6 +29,7 @@
         <th>Production ceased</th>
         <th>End of service</th>
         <th>Image</th>
+        <th>Action</th>
     </tr>
 
         {% for train in trains %}
@@ -46,6 +47,11 @@
 
                 <td>
                     <img src="{{ train.getPicture }}" width="150" alt="Image of {{ train.getName }}">
+                </td>
+
+                <td>
+                <a href="{{path("train_update", { 'id': train.getId })}}">Update</a>
+
                 </td>
 
             <tr>
