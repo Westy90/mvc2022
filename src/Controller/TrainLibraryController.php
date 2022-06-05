@@ -14,6 +14,38 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TrainLibraryController extends AbstractController
 {
+
+        /**
+    * @Route("/train/reset", name="reset_train")
+    */
+    public function resetTrain(
+        ManagerRegistry $doctrine,
+        TrainLibraryRepository $TrainLibraryRepository
+    ): Response {
+        $entityManager = $doctrine->getManager();
+
+        $trains[0] = new TrainLibrary("C2", 280, 1949, 1961, 1999, "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Sp%C3%A5rv%C3%A4gsmuseet_-SL_C2_2417.JPG/800px-Sp%C3%A5rv%C3%A4gsmuseet_-SL_C2_2417.JPG?20150206134530");
+        $trains[1] = new TrainLibrary("C6", 160, 1970, 1974, 2022, "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/SL_C6_2701_vid_Ropsten.jpg/1920px-SL_C6_2701_vid_Ropsten.jpg");
+        $trains[2] = new TrainLibrary("C20F", 1, 2003, 2003, 0, "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/SL_C20F_04.jpg/745px-SL_C20F_04.jpg");
+
+
+
+        // tell Doctrine you want to (eventually) save the train
+        // (no queries yet)
+
+        foreach ($trains as $train) {
+            $entityManager->persist($train);
+        }
+
+        // actually executes the queries (i.e. the INSERT query)
+        $entityManager->flush();
+
+        $this->addFlash("info", 'Saved new train with id '.$train->getId());
+
+        return $this->redirectToRoute('library-home');
+    }
+
+
     #[Route('/train/library', name: 'library-home')]
     public function index(TrainLibraryRepository $TrainLibraryRepository): Response
     {
@@ -28,7 +60,6 @@ class TrainLibraryController extends AbstractController
             'controller_name' => 'TrainLibraryController'
 
         ];
-
 
         return $this->render('train_library/home.html.twig', $data);
     }
@@ -83,9 +114,6 @@ class TrainLibraryController extends AbstractController
         // actually executes the queries (i.e. the INSERT query)
         $entityManager->flush();
 
-        $trains = $TrainLibraryRepository
-        ->findAll();
-
         $this->addFlash("info", 'Saved new train with id '.$train->getId());
 
         return $this->redirectToRoute('library-home');
@@ -116,7 +144,6 @@ class TrainLibraryController extends AbstractController
         $train = $TrainLibraryRepository
             ->find($id);
 
-
         $data = [
         'title' => 'Train Library - Details for one train',
         'trains' => [$train],
@@ -128,7 +155,31 @@ class TrainLibraryController extends AbstractController
     return $this->render('train_library/home.html.twig', $data);
     }
 
+    /**
+     * @Route("/train/delete/{id}", name="train_delete_by_id")
+     */
+    public function deletetrainById(
+        ManagerRegistry $doctrine,
+        TrainLibraryRepository $TrainLibraryRepository,
+        int $id
+    ): Response {
+        $entityManager = $doctrine->getManager();
+        $train = $TrainLibraryRepository
+        ->find($id);
 
+        if (!$train) {
+            throw $this->createNotFoundException(
+                'No train found for id '.$id
+            );
+        }
+
+        $this->addFlash("info", 'Train with id '.$train->getId().' has been deleted');
+
+        $entityManager->remove($train);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('library-home');
+    }
 
 
     /**
