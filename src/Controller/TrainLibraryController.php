@@ -24,7 +24,7 @@ class TrainLibraryController extends AbstractController
         $data = [
             'title' => 'Train Library - Home',
             'trains' => $trains,
-            'infoBox' => "Showing all the trains in the database:",
+            'infoBox' => "Showing all the trains in the database below. Click on Id # for details for one train",
             'controller_name' => 'TrainLibraryController'
 
         ];
@@ -112,8 +112,9 @@ class TrainLibraryController extends AbstractController
      * @Route("/train/show/{id}", name="train_by_id")
      */
     public function showtrainById(
-        TrainLibraryRepository $TrainLibraryRepository,
-        int $id
+        int $id,
+        TrainLibraryRepository $TrainLibraryRepository
+
     ): Response {
         $train = $TrainLibraryRepository
             ->find($id);
@@ -122,7 +123,7 @@ class TrainLibraryController extends AbstractController
         $data = [
         'title' => 'Train Library - Details for one train',
         'trains' => [$train],
-        'infoBox' => "Showing details for one train",
+        'infoBox' => "Showing details for one train.",
         'controller_name' => 'TrainLibraryController'
 
         ];

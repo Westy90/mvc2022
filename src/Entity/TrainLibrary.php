@@ -56,7 +56,7 @@ class TrainLibrary
 
     public function getDataArray(): array
     {
-        return [$this->id, $this->name, $this->amount_made, $this->year_made, $this->last_year_made, $this->exit_service];
+        return [$this->name, $this->amount_made, $this->year_made, $this->last_year_made, $this->exit_service];
     }
 
     public function getId(): ?int

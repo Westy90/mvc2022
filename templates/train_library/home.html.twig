@@ -34,6 +34,10 @@
         {% for train in trains %}
             <tr>
 
+                <td>
+                <a href="{{path("train_by_id", { 'id': train.getId })}}">{{train.getId}}</a>
+                </td>
+
                 {% for data in train.getDataArray %}
                     <td>
                         {{ data }}
