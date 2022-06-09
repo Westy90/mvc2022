@@ -1,0 +1,112 @@
+{% extends "base.html.twig" %}
+
+
+{% block title %}Metrics{% endblock %}
+
+{% block content %}
+
+<h1> Report </h1>
+Här presenteras texten för rapporten för kursmoment 6, phpmetrics och Scrutinizer CI.
+
+
+<h1> Introduktion </h1>
+
+
+<p>
+    <b>Code Coverage</b> innebär i vilken andel av koden som är på något sätt enhetstestad.
+    Detta syftar till att minska andelen buggar i programmet. En hög code coverage är att föredra
+    men det inte nödvändigtvis så att 100% är det enda godtagbara. Testbarkod innebär
+    troligen också att koden är "snyggare" och lättare att sätta sig in i, därför är det
+    eftersträvansvärt att uppnå så att koden är testbar och även testas.
+</p>
+
+<p> 
+    <b>Complexity</b> kan delas in två delar, dels hur många rader kod som finns och dels Cyclomatic Complexity.
+    Den första är ju ganska självbeskriande, hur många rader kod som en klass eller program innehåller.
+    Det är eftersträvans värt att ha mindre mängd kod rader om programmet kan lösa samma uppgift.
+    Dels så är det ju en fråga gällande resuresr, datorn CPU och minne, som gynnas av ett kortare program.
+    Men det är också troligen så att det är lättare för en programmerare att förstå ett program och få en överblick
+    om det är färre rader kod.
+</p>
+
+<p>
+    Den andra delen av complexity är Cyclomatic Complexity hur många programflödesstyrande sataser det finns i 
+    koden, det vill säga, if-satser, loopar och funktionsanrop. Det kan också beskrivs som
+    när programmet kan ta "olika riktningar/alternativ". Det är eftersträvansvärt att ha så låg 
+    cyclomatic complexity som möjligt. Detta är nog likt argumenten gällande rader kod. Det är dels
+    en resursfråga men också en fråga gällande hur lätt koden är att begripa och debugga.
+</p>
+
+<p>
+<b>Coupling</b> innebär i vilken grad som en klass är beroende utav andra klasser. Det är
+eftersträvansvärt att uppnå en så låg grad av coupling som möjligt. Hög coupling skulle kunna
+vara att om man ändrar något i en del av en klass så påverkar det en annan klass. Det finns därtill
+två olika typer av coupling. Den ena är Afferent coupling som innebär hur många
+klasser som påverka<b>s</b> av den egna klassen. Den andra är Efferent coupling vilket är tvärtom,
+det vill säga hur många klasser som påverk<b>ar</b> den egna klassen.
+</p>
+
+<p>
+<b>Cohesion</b> innebär i vilken grad klassen är sammanhängande och gör samma sak. Det är alltså inte 
+eftersträvansvärt med kod inom samma klass som gör olika saker. Det är enklare att förstå kod 
+som gör samma sak än klasser som är spretiga och göra olika saker. Det är också sannolikt att 
+klasser med låg Cohesion ger upphov till sidoeffekter.
+
+</p>
+
+
+
+
+<h1>Phpmetrics </h1>
+
+
+<p>
+    Gällande compleixty i min kod så har jag 1 188 rader kod där den största klassen game har 92 rader kod.
+    Gällande cyclomatisk komplexitet så är det främst klassen game med komplexiteten 17. De andra klasserna
+    är i genomsnitt 3,08 i cyclomatisk komplexitet. Så det är låga värden anser jag.
+
+</p>
+
+<p>
+    Gällande <b>coupling</b> i min kod, för klasserna kopplade kortleksuppgifterna så är klassen Card
+    grunden, det vill säga själva kortet. Detta kort används ju av alla andra klasser som är inom
+    det namespacet, därför har den 5 stycken Afferent coupling. För att exempelvis få fram värdet
+    av ett kort så måste man använda card-klassens get-funktion. Om jag då skulle ändra get-funktionen
+    för Card, kanske till och med ta bort den, så skulle det skapa stora problem för iprincip
+    alla övriga klasser inom det namespacet. På det sättet så är alla övriga klasser beroende av
+    Card, det finns alltså en hög coupling till Card.
+</p>
+
+<p>
+    Exempel på cohesion är kanske klassen Card inom namespacet Card. I den klassen hanteras bara kort
+    där den antingen delar ut, tar emot kort. Möjligen funktionaliteten att räkna kortens värde 
+    är något som är lite utanför? Det är antaligen inte svart eller vitt vad som
+    är hög Cohesion. Jag lyckas dock inte i PHPmetrics hitta värdet för coupling?
+</p>
+
+
+
+
+
+
+
+
+
+<h1>Scrutinizer</h1>
+
+
+
+
+
+
+
+<p>
+    Jag får ganska låg Code Coverage enligt Scrutinizer, 15,8%. Det beror på att uppgifterna
+    i tidigare kursmoment har varit att testa under namespacet Card och till viss del Dice.
+    Som jag nämnt i tidigare redovisningstext så i Card namespace och klassen Game så
+    var det något lägre testcoverage, 63%, i relation till de andra i samma namespace. Som jag nämnde 
+    då i tidigare redovisningstext så var det kod som jag kände mig mer osäker på även
+    när jag skrev den, vilket också gjorde att det belv svårt att gå tillbaka och testa den.
+</p>
+
+{% endblock %}
