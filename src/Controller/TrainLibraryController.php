@@ -1,12 +1,10 @@
 <?php
 
 namespace App\Controller;
+
 use App\Entity\TrainLibrary;
 use Doctrine\Persistence\ManagerRegistry;
-
 use App\Repository\TrainLibraryRepository;
-
-
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,8 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TrainLibraryController extends AbstractController
 {
-
-        /**
+    /**
     * @Route("/train/reset", name="reset_train")
     */
     public function resetTrain(
@@ -46,7 +43,7 @@ class TrainLibraryController extends AbstractController
         // actually executes the queries (i.e. the INSERT query)
         $entityManager->flush();
 
-        $this->addFlash("info", 'Saved new train with id '.$train->getId());
+        $this->addFlash("info", 'The database is now resetted');
 
         return $this->redirectToRoute('library-home');
     }
@@ -55,7 +52,6 @@ class TrainLibraryController extends AbstractController
     #[Route('/train/library', name: 'library-home')]
     public function index(TrainLibraryRepository $TrainLibraryRepository): Response
     {
-
         $trains = $TrainLibraryRepository
             ->findAll();
 
@@ -64,7 +60,6 @@ class TrainLibraryController extends AbstractController
             'trains' => $trains,
             'infoBox' => "Showing all the trains in the database below. Click on Id # for details for one train",
             'controller_name' => 'TrainLibraryController'
-
         ];
 
         return $this->render('train_library/home.html.twig', $data);
@@ -79,8 +74,7 @@ class TrainLibraryController extends AbstractController
      */
     public function createTrain(
         TrainLibraryRepository $TrainLibraryRepository
-    ): Response
-    {
+    ): Response {
         $train = new TrainLibrary(); //Dummy train för att använda samma vy i C och U
 
         $data = [
@@ -120,7 +114,7 @@ class TrainLibraryController extends AbstractController
         // actually executes the queries (i.e. the INSERT query)
         $entityManager->flush();
 
-        $this->addFlash("info", 'Saved new train with id '.$train->getId());
+        $this->addFlash("info", 'Saved new train with id ' . $train->getId());
 
         return $this->redirectToRoute('library-home');
     }
@@ -145,7 +139,6 @@ class TrainLibraryController extends AbstractController
     public function showtrainById(
         int $id,
         TrainLibraryRepository $TrainLibraryRepository
-
     ): Response {
         $train = $TrainLibraryRepository
             ->find($id);
@@ -158,7 +151,7 @@ class TrainLibraryController extends AbstractController
 
         ];
 
-    return $this->render('train_library/home.html.twig', $data);
+        return $this->render('train_library/home.html.twig', $data);
     }
 
     /**
@@ -175,11 +168,11 @@ class TrainLibraryController extends AbstractController
 
         if (!$train) {
             throw $this->createNotFoundException(
-                'No train found for id '.$id
+                'No train found for id ' . $id
             );
         }
 
-        $this->addFlash("info", 'Train with id '.$train->getId().' has been deleted');
+        $this->addFlash("info", 'Train with id ' . $train->getId() . ' has been deleted');
 
         $entityManager->remove($train);
         $entityManager->flush();
@@ -199,8 +192,7 @@ class TrainLibraryController extends AbstractController
         ManagerRegistry $doctrine,
         TrainLibraryRepository $TrainLibraryRepository,
         int $id
-    ): Response
-    {
+    ): Response {
         $entityManager = $doctrine->getManager();
         $train = $TrainLibraryRepository
         ->find($id);
@@ -225,7 +217,6 @@ class TrainLibraryController extends AbstractController
         Request $request,
         TrainLibraryRepository $TrainLibraryRepository
     ): Response {
-
         $entityManager = $doctrine->getManager();
         $train = $TrainLibraryRepository
         ->find($request->request->get('id'));
@@ -243,18 +234,8 @@ class TrainLibraryController extends AbstractController
 
         $entityManager->flush();
 
-        $this->addFlash("info", 'Train with id '.$train->getId().' has been update');
+        $this->addFlash("info", 'Train with id ' . $train->getId() . ' has been update');
 
         return $this->redirectToRoute('library-home');
-
     }
-
-
-
-
-
-
-
-
-
 }

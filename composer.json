@@ -110,6 +110,7 @@
             "@putenv XDEBUG_MODE=coverage",
             "php bin/phpunit"
         ],
+        "phpmetrics": "tools/phpmetrics/vendor/bin/phpmetrics --config=phpmetrics.json",
         "lint": [
             "@phpcpd",
             "@phpmd",

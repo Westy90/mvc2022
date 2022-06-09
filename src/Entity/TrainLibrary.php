@@ -35,17 +35,20 @@ class TrainLibrary
      * Constructor to create a Train.
      *
      * @param string $name The name of train.
-     * @param int    $age  The age of the person.
+     * @param int    $amount_made       The amount of trains made.
+     * @param int    $year_made         When production started
+     * @param int    $last_year_made    When production was done
+     * @param int    $exit_service      When the train exited service
+     * @param string $picture           Picture of the train
      */
     public function __construct(
-        string $name = NULL,
-        ?int $amount_made = NULL,
-        ?int $year_made = NULL,
-        ?int $last_year_made = NULL,
-        ?int $exit_service = NULL,
-        ?string $picture = NULL
-    )
-    {
+        string $name = null,
+        ?int $amount_made = null,
+        ?int $year_made = null,
+        ?int $last_year_made = null,
+        ?int $exit_service = null,
+        ?string $picture = null
+    ) {
         $this->name = $name;
         $this->amount_made = $amount_made;
         $this->year_made = $year_made;
