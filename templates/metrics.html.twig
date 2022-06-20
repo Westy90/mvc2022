@@ -153,7 +153,11 @@ klasser med låg Cohesion ger upphov till sidoeffekter.
 
 
     <p>
-        Under issues finns det ett antal problem som Srutinizer har hittat.
+        Under issues finns det ett antal problem som Srutinizer har hittat, så som unused code,
+        alltså kod som är skriven i programmet men inte används av något. I mitt program finns 
+        det 603 stycken av dessa. Men de som jag hittar kopplat till min kod så finns det sju stycken.
+        Exempelvis i klassen  src/Controller/CardController.php så har jag deklarerat en variabel som en instans
+        till Die, och det beror på att jag varit slarvig när jag kopierat tidigare kod.
     </p>
 
 
@@ -161,6 +165,17 @@ klasser med låg Cohesion ger upphov till sidoeffekter.
 
 <h1>Förbättringar</h1>
 
+<p> Jag minskade komplexiteten för Game genom att gå igenom den största metoden,
+    evaluate() genom att se hur jag kunde minska antalet kontrollsatser.
+    Det gjorde jag genom att $userBestScore skulle sättas utifrån det bästa värdet
+    av de två olika summorna, det hade jag tidigare en ifelse-sats för. Men genom att
+    först deklarera värdet enligt det högsta, och se köra en if-sats som kollar om det högsta
+    är över 21 för att sedan ändra till det lägre värdet så minskade jag antalet komplexiteter.
+    Jag tog även bort en nestlad if-sats. Enligt scrutinizer så hade game 27 i komplexitet innan.
+
+
+
+</p>
 
 
 

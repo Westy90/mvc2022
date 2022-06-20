@@ -103,24 +103,23 @@ class Game
     {
         if ($this->getSumArray(0)[0] > 21 and $this->getSumArray(0)[1] > 21) {
             return "won";
-        } else {
-            if ($this->getSumArray(0)[1] > 21) {
-                $computerBestScore = $this->getSumArray(0)[0];
-            } else {
-                $computerBestScore = $this->getSumArray(0)[1];
-            }
-
-            if ($this->getSumArray(1)[1] > 21) {
-                $userBestScore = $this->getSumArray(1)[0];
-            } else {
-                $userBestScore = $this->getSumArray(1)[1];
-            }
-
-            if ($userBestScore > $computerBestScore) {
-                return "won";
-            }
-
-            return "lost";
         }
+
+        $computerBestScore = $this->getSumArray(0)[1];
+        if ($this->getSumArray(0)[1] > 21) {
+            $computerBestScore = $this->getSumArray(0)[0];
+        }
+
+        $userBestScore = $this->getSumArray(1)[1];
+        if ($this->getSumArray(1)[1] > 21) {
+            $userBestScore = $this->getSumArray(1)[0];
+        }
+
+        if ($userBestScore > $computerBestScore) {
+            return "won";
+        }
+
+        return "lost";
     }
+
 }

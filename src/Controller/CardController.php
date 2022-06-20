@@ -17,7 +17,6 @@ class CardController extends AbstractController
      */
     public function home(SessionInterface $session): Response
     {
-        $die = new \App\Dice\Dice();
 
         $data = [
             'title' => 'Card Deck - Home',

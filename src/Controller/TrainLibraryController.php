@@ -73,15 +73,14 @@ class TrainLibraryController extends AbstractController
      * )
      */
     public function createTrain(
-        TrainLibraryRepository $TrainLibraryRepository
+
     ): Response {
-        $train = new TrainLibrary(); //Dummy train för att använda samma vy i C och U
 
         $data = [
             'title' => 'Train Library - Create',
             'action' => "create_process",
             'formTitle' => "Create",
-            'trains' => [new TrainLibrary()],
+            'trains' => [new TrainLibrary()], //Dummy train för att använda samma vy i C och U
             'controller_name' => 'TrainLibraryController'
         ];
 
@@ -93,8 +92,7 @@ class TrainLibraryController extends AbstractController
     */
     public function createTrainProcess(
         ManagerRegistry $doctrine,
-        Request $request,
-        TrainLibraryRepository $TrainLibraryRepository
+        Request $request
     ): Response {
         $entityManager = $doctrine->getManager();
 
@@ -193,7 +191,6 @@ class TrainLibraryController extends AbstractController
         TrainLibraryRepository $TrainLibraryRepository,
         int $id
     ): Response {
-        $entityManager = $doctrine->getManager();
         $train = $TrainLibraryRepository
         ->find($id);
 

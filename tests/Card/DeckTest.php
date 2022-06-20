@@ -107,8 +107,6 @@ class DeckTest extends TestCase
 
         $this->deck->poppedArrayCards();
 
-        $res = $this->deck->remainingCards();
-
         $this->assertEquals(4, $before - 1);
     }
 }

@@ -76,7 +76,6 @@ class GameController extends AbstractController
     public function new(SessionInterface $session): Response
     {
         $game = $session->get("game");
-        $outcome = null;
 
         $game->dealCards(1, 1); //Ger ett kort till player1
 
