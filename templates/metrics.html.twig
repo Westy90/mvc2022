@@ -13,11 +13,13 @@ Här presenteras texten för rapporten för kursmoment 6, phpmetrics och Scrutin
 
 
 <p>
-    <b>Code Coverage</b> innebär i vilken andel av koden som är på något sätt enhetstestad.
+    <b>Code Coverage</b> innebär i vilken andel av koden som är enhetstestad.
     Detta syftar till att minska andelen buggar i programmet. En hög code coverage är att föredra
-    men det inte nödvändigtvis så att 100% är det enda godtagbara. Testbarkod innebär
+    men det inte nödvändigtvis så att 100% är det enda godtagbara. Testbar kod innebär
     troligen också att koden är "snyggare" och lättare att sätta sig in i, därför är det
-    eftersträvansvärt att uppnå så att koden är testbar och även testas.
+    eftersträvansvärt att uppnå så att koden är testbar och även testas och därmed har hög code coverage.
+    En annan fördel är att om man gör förändringar av sin kod så kan man på ett snabbt sätt 
+    säkerställa att funktionaliteten i programmet är bibehållen genom att testa sin kod.
 </p>
 
 <p> 
@@ -30,11 +32,12 @@ Här presenteras texten för rapporten för kursmoment 6, phpmetrics och Scrutin
 </p>
 
 <p>
-    Den andra delen av complexity är Cyclomatic Complexity hur många programflödesstyrande sataser det finns i 
-    koden, det vill säga, if-satser, loopar och funktionsanrop. Det kan också beskrivs som
-    när programmet kan ta "olika riktningar/alternativ". Det är eftersträvansvärt att ha så låg 
+    Den andra delen av complexity är Cyclomatic Complexity, som innebär hur många programflödesstyrande satser det finns i 
+    koden. Exempel på sådana är if-satser, loopar och funktionsanrop. Det kan också beskrivs som
+    hur många gånger programmet kan ta olika riktningar/alternativ. Det är eftersträvansvärt att ha så låg 
     cyclomatic complexity som möjligt. Detta är nog likt argumenten gällande rader kod. Det är dels
-    en resursfråga men också en fråga gällande hur lätt koden är att begripa och debugga.
+    en resursfråga men också en fråga gällande hur lätt koden är att begripa och debugga, där lägre cyclomatic complexity 
+    är att föredra.
 </p>
 
 <p>
@@ -60,53 +63,115 @@ klasser med låg Cohesion ger upphov till sidoeffekter.
 <h1>Phpmetrics </h1>
 
 
-<p>
-    Gällande compleixty i min kod så har jag 1 188 rader kod där den största klassen game har 92 rader kod.
-    Gällande cyclomatisk komplexitet så är det främst klassen game med komplexiteten 17. De andra klasserna
-    är i genomsnitt 3,08 i cyclomatisk komplexitet. Så det är låga värden anser jag.
+    <p>
+        Gällande compleixty i min kod så har jag 1 188 rader kod där den största klassen game har 92 rader kod.
+        Gällande cyclomatisk komplexitet så är det främst klassen game med komplexiteten 17. De andra klasserna
+        är i genomsnitt 3,08 i cyclomatisk komplexitet. Så det är låga värden anser jag även om Game sticker ut.
 
-</p>
+    </p>
 
-<p>
-    Gällande <b>coupling</b> i min kod, för klasserna kopplade kortleksuppgifterna så är klassen Card
-    grunden, det vill säga själva kortet. Detta kort används ju av alla andra klasser som är inom
-    det namespacet, därför har den 5 stycken Afferent coupling. För att exempelvis få fram värdet
-    av ett kort så måste man använda card-klassens get-funktion. Om jag då skulle ändra get-funktionen
-    för Card, kanske till och med ta bort den, så skulle det skapa stora problem för iprincip
-    alla övriga klasser inom det namespacet. På det sättet så är alla övriga klasser beroende av
-    Card, det finns alltså en hög coupling till Card.
-</p>
+    <p>
+        Gällande <b>coupling</b> i min kod, för klasserna kopplade kortleksuppgifterna så är klassen Card
+        grunden, det vill säga själva kortet i kortpslet. Detta kort används ju av alla andra klasser som är inom
+        det namespacet, därför har den 5 stycken Afferent coupling. För att exempelvis få fram värdet
+        av ett kort så måste man använda card-klassens get-funktion. Om jag då skulle ändra get-funktionen
+        för Card, eller ta bort den, så skulle det skapa stora problem för iprincip
+        alla övriga klasser inom det namespacet. På det sättet så är alla övriga klasser beroende av
+        Card, det finns en hög coupling till Card.
+    </p>
 
-<p>
-    Exempel på cohesion är kanske klassen Card inom namespacet Card. I den klassen hanteras bara kort
-    där den antingen delar ut, tar emot kort. Möjligen funktionaliteten att räkna kortens värde 
-    är något som är lite utanför? Det är antaligen inte svart eller vitt vad som
-    är hög Cohesion. Jag lyckas dock inte i PHPmetrics hitta värdet för coupling?
-</p>
+    <p>
+        Exempel på cohesion är kanske klassen Hand inom namespacet Card. I den klassen hanteras bara kort
+        där den antingen delar ut, tar emot kort. Möjligen funktionaliteten att räkna kortens värde 
+        är något som är lite utanför? Det är antaligen inte svart eller vitt vad som
+        är hög Cohesion. Jag lyckas dock inte i PHPmetrics hitta värdet för coupling?
+    </p>
+
+    <p>
+        Jag väljer att titta på mätvärder class vialoations
+        Jag får sju stycken <b>validations</b>, vara 1 critical och 7 warnings, som rör tre klasser, game, cardcontroller
+        och trainlibrarycontroller. Gällande game så är jag enligt tidigare inte förvånad och
+        gällande cardcontroller så är det kanske ganska mycket kod i en och samma controllerklass. Gällande trainlibrarycontroller
+        så flaggade jag även där i tidigare redovisningstext där jag övervägde att skapa en klass för kommunikation mellan controllers och vyn 
+        genom en modell/klass som hanterar den funktionaliteten. Men jag valde att inte göra
+        så då det ändå kändes som ganska lite kod i controllern. Men här i phpmetrics får jag utslag om "God object",
+        som innebär att den sköter huvuddelen av all logik i programmet, vilket förvisso stämmer ganska bra.
+        Men det känns "fånigt" på något sätt att göra det till en databasklass när det är relativt lite kod?
+    </p>
 
 
-
-
-
-
+    <p>
+        Svagheter som finns i min kod enligt phpmetrics är att Game-klassen är för komplex och har för mycket kodrader.
+        Vad den också genomgående ger nedslag på är att controllerna är komplexa samt svåra att underhålla. Dock håller
+        de sig under 20 i komplexitet så man kan ju ändå fundera på om det verkligen är ett problem? Som tidigare nämnt så
+        är TrainLibraryController problematisk då den är en "god objekt" då den hanterar många olika delar mot databasen,
+        och det antar jag väl kommer från att CRUD just är olika typer av funktionalitet men att de ändå är mot samma databas
+        och enligt mig som människa "inom samma scope". För det kanske också är det som är utamningen med testerna,
+        och det är att de inte tittar kvalitativt analytiskt utan bara kvantitativt utifrån sina riktmärken. Hur som helst 
+        så hade jag ju en dialog med MOS gällande denna Controller och vi kom fram till att den ändå var okej utformad.
+    </p>
+    svagheter
 
 
 
 <h1>Scrutinizer</h1>
 
 
+    <p>
+        Jag får ganska låg Code Coverage enligt Scrutinizer, 15,8%. Det beror på att uppgifterna
+        i tidigare kursmoment har varit att testa under namespacet Card och till viss del Dice
+        samt att inte testa controllers. Så det är väl
+        enligt scrutinizer bättre kodtäckning jag bör fixa till, exempelvis för Dice-klassen.
+        Som jag nämnt i tidigare redovisningstext så i Card namespace och klassen Game så
+        var det något lägre testcoverage, 63%, i relation till de andra i samma namespace. Som jag nämnde
+        då i tidigare redovisningstext så var det kod som jag kände mig mer osäker på även
+        när jag skrev den, vilket också gjorde att det belv svårt att gå tillbaka och testa den.
+    </p>
+
+    <p>
+        Ett problem som jag finner vid analys med hjälp av Scrutinizer inspection är att det verkar som
+        att många nedslag är kopplade till ramverket. Exempelvis när jag bläddrar runt så verkar typ 
+        allt som har grading E vara kopplat mot ramverket? Det är ju nackdel för mig att försöka hitta 
+        "mina" koddelar och vad som falerar med det. Där är därför lite svårt att tolka Scrutinizer när den ger 
+        nedslag på så många filer som jag själv inte är bekant med...
+    </p>
+
+    <p>
+        Gällande complexity så berättar Scrutinizer att min src/-mapp innehåller 537 rader kod.
+        Så den tittar därmed inte på hela programmets kod. Den klassen med högst complexity,
+        är i likhet med phpmetrics fall, Game. Den räknar fram att det är 27 i complexitet. Det skiljer sig från 
+        phpMetrics som räknade fram det till 17. När jag själv räknar på komplexiteten får jag det till 16.
+        Bland annat så gör jag antagandet att för satsen "$this->getSumArray(0)[0] < 17 or $this->getSumArray(0)[1] < 1"
+        så räknas det som två komplexitet då det sker i två fall? Förklaringen till varför Scrutinizer
+        får tio fler komplexitet än metrics kanske är för att Scrutinizer räknar varje metod som 1 komplexitet.
+        Detta då det är 11 metoder, samtidigt som att Scrutinizer räknar "$this->getSumArray(0)[0] < 17 or $this->getSumArray(0)[1] < 1"
+        som en komplexitet? Högst oklart... Det är dock så att Scrutinizer ändå betydersätter metoden med A, även 
+        om den har högst komplexitet jämfört med de andra klasserna. Dock tror jag att gränsen är 20, så det kan vara
+        förklaringen.
+
+    </p>
+
+
+    <p>
+        Under issues finns det ett antal problem som Srutinizer har hittat.
+    </p>
 
 
 
 
+<h1>Förbättringar</h1>
 
-<p>
-    Jag får ganska låg Code Coverage enligt Scrutinizer, 15,8%. Det beror på att uppgifterna
-    i tidigare kursmoment har varit att testa under namespacet Card och till viss del Dice.
-    Som jag nämnt i tidigare redovisningstext så i Card namespace och klassen Game så
-    var det något lägre testcoverage, 63%, i relation till de andra i samma namespace. Som jag nämnde 
-    då i tidigare redovisningstext så var det kod som jag kände mig mer osäker på även
-    när jag skrev den, vilket också gjorde att det belv svårt att gå tillbaka och testa den.
-</p>
+
+
+
+Som jag skrivit tidigare i min redovisningstext hade jag föraningen att min klass Game inte var
+särskilt exemplarisk. Bland annat kände jag en svårighet att testa den och svårighet att få
+överblickning. På så vis hade jag föraningen att den skulle ge stora utslag i Phpmetrics,
+och föraningen var sann. Det var den klassen som hade högst komplexitet (17) och lägst 
+maintainability  (46.63).
+
+
+
+
 
 {% endblock %}
