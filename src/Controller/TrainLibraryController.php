@@ -15,6 +15,7 @@ class TrainLibraryController extends AbstractController
     /**
     * @Route("/train/reset", name="reset_train")
     */
+
     public function resetTrain(
         ManagerRegistry $doctrine,
         TrainLibraryRepository $TrainLibraryRepository
@@ -28,6 +29,8 @@ class TrainLibraryController extends AbstractController
             $entityManager->remove($train);
         }
         //$entityManager->flush();
+
+        $newTrains = array();
 
         $newTrains[0] = new TrainLibrary("C2", 280, 1949, 1961, 1999, "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Sp%C3%A5rv%C3%A4gsmuseet_-SL_C2_2417.JPG/800px-Sp%C3%A5rv%C3%A4gsmuseet_-SL_C2_2417.JPG?20150206134530");
         $newTrains[1] = new TrainLibrary("C6", 160, 1970, 1974, 2022, "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/SL_C6_2701_vid_Ropsten.jpg/1920px-SL_C6_2701_vid_Ropsten.jpg");

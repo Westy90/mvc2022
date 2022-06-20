@@ -21,4 +21,39 @@ class DiceTest extends TestCase
         $res = $die->getAsString();
         $this->assertNotEmpty($res);
     }
+
+    /**
+     * Tests that getAsString method returns the number as string
+     */
+    public function testGetAsString()
+    {
+        $die = new Dice();
+
+        $die->setDice(1);
+
+        $res = $die->getAsString();
+
+        $this->assertEquals("1", $res);
+    }
+
+        /**
+     * Tests that roll returns die in a value between 1 - 6
+     */
+    public function testRoll()
+    {
+        $die = new Dice();
+
+        $die->setDice(100);
+
+        $die->roll();
+
+        $res = $die->getDice();
+
+        $this->assertGreaterThan(0, $res);
+        $this->assertLessThan(7, $res);
+
+    }
 }
+
+
+

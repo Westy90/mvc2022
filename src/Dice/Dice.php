@@ -11,6 +11,16 @@ class Dice
         $this->value = random_int(1, 6);
     }
 
+    public function setDice($value)
+    {
+        $this->value = $value;
+    }
+
+    public function getDice()
+    {
+        return $this->value;
+    }
+
     public function roll(): int
     {
         $this->value = random_int(1, 6);
@@ -19,6 +29,6 @@ class Dice
 
     public function getAsString(): string
     {
-        return "[{$this->value}]";
+        return "{$this->value}";
     }
 }

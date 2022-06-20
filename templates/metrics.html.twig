@@ -133,7 +133,9 @@ klasser med låg Cohesion ger upphov till sidoeffekter.
         att många nedslag är kopplade till ramverket. Exempelvis när jag bläddrar runt så verkar typ 
         allt som har grading E vara kopplat mot ramverket? Det är ju nackdel för mig att försöka hitta 
         "mina" koddelar och vad som falerar med det. Där är därför lite svårt att tolka Scrutinizer när den ger 
-        nedslag på så många filer som jag själv inte är bekant med...
+        nedslag på så många filer som jag själv inte är bekant med. Det hade varit bra med en filterfunktion
+        så att jag kunde avgräna för filerna som bara ligger under mappen Src. Då hade jag haft en bättre 
+        överblick för de koddelarna som jag skapat.
     </p>
 
     <p>
@@ -160,9 +162,9 @@ klasser med låg Cohesion ger upphov till sidoeffekter.
     </p>
 
 
-<p> När jag fortsätter titta under de rekommendationer som scrutinizer har så ser jag fältet "best practice",
+    <p> När jag fortsätter titta under de rekommendationer som scrutinizer har så ser jag fältet "best practice",
     och jag ser även att några av mina klasser har liknande problem, det vill säga att jag inte har deklarerat 
-    vissa medlemsvariabler i ett antal klasser. Det gäller först i testsviterna vilket jag åtgärdat genom att
+    vissa medlemsvariabler i ett antal klasser. Det gälle i testsviterna vilket jag åtgärdat genom att
     deklarera medlemsvariabler i de klasserna, och det gällde samtliga testklasser.
     <p>
 
@@ -190,10 +192,16 @@ klasser med låg Cohesion ger upphov till sidoeffekter.
 </p>
 
 <p>
-    Jag gjorde förbättringen kring att ta bort unused code som står i några stycken upp.
+    Jag gjorde förbättringen kring att ta bort unused code som står i några stycken upp samt la till
+    medlemsvariabler för testerna. Det gav dock ingen förändring i det Scrutinizers övergripande poäng.
+    Men antalet issues minskades med 4 stycken.
 </p>
 
 
+
+<p>
+    Jag har ökat code coverage genom att göra flera tester...
+</p>
 
 
 

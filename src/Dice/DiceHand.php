@@ -29,7 +29,7 @@ class DiceHand
     {
         $str = "";
         foreach ($this->hand as $die) {
-            $str .= $die->getAsString();
+            $str .= " " . $die->getAsString();
         }
         return $str;
     }
