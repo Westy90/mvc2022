@@ -9,16 +9,19 @@ use PHPUnit\Framework\TestCase;
  */
 class DiceGraphicTest extends TestCase
 {
+
+    protected DiceGraphic $die;
+
     /**
      * Construct object and verify that the object has the expected
      * properties, use no arguments.
      */
     public function testCreateDiceGraphic()
     {
-        $die = new DiceGraphic();
-        $this->assertInstanceOf("\App\Dice\DiceGraphic", $die);
+        $this->die = new DiceGraphic();
+        $this->assertInstanceOf("\App\Dice\DiceGraphic", $this->die);
 
-        $res = $die->getAsString();
+        $res = $this->die->getAsString();
         $this->assertNotEmpty($res);
     }
 
@@ -27,11 +30,11 @@ class DiceGraphicTest extends TestCase
      */
     public function testGetAsString()
     {
-        $die = new DiceGraphic();
+        $this->die = new DiceGraphic();
 
-        $die->setDice(1);
+        $this->die->setDice(1);
 
-        $res = $die->getAsString();
+        $res = $this->die->getAsString();
 
         $this->assertEquals('⚀', $res);
     }

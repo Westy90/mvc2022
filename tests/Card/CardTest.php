@@ -17,10 +17,10 @@ class CardTest extends TestCase
      */
     public function testCreateCard()
     {
-        $card = new Card("spades", 5);
-        $this->assertInstanceOf("\App\Card\Card", $card);
+        $this->card = new Card("spades", 5);
+        $this->assertInstanceOf("\App\Card\Card", $this->card);
 
-        $res = $card->getValue();
+        $res = $this->card->getValue();
         $this->assertNotEmpty($res);
     }
 
@@ -29,9 +29,9 @@ class CardTest extends TestCase
      */
     public function testGetValue()
     {
-        $card = new Card("spades", 5);
+        $this->card = new Card("spades", 5);
 
-        $res = $card->getValue();
+        $res = $this->card->getValue();
         $this->assertEquals(5, $res);
     }
 
@@ -40,9 +40,9 @@ class CardTest extends TestCase
      */
     public function testGetSuit()
     {
-        $card = new Card("spades", 5);
+        $this->card = new Card("spades", 5);
 
-        $res = $card->getSuit();
+        $res = $this->card->getSuit();
         $this->assertEquals("spades", $res);
     }
 }

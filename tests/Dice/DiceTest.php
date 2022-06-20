@@ -9,16 +9,20 @@ use PHPUnit\Framework\TestCase;
  */
 class DiceTest extends TestCase
 {
+
+    protected Dice $die;
+
     /**
      * Construct object and verify that the object has the expected
      * properties, use no arguments.
      */
     public function testCreateDice()
     {
-        $die = new Dice();
-        $this->assertInstanceOf("\App\Dice\Dice", $die);
 
-        $res = $die->getAsString();
+        $this->die = new Dice();
+        $this->assertInstanceOf("\App\Dice\Dice", $this->die);
+
+        $res = $this->die->getAsString();
         $this->assertNotEmpty($res);
     }
 
@@ -27,11 +31,11 @@ class DiceTest extends TestCase
      */
     public function testGetAsString()
     {
-        $die = new Dice();
+        $this->die = new Dice();
 
-        $die->setDice(1);
+        $this->die->setDice(1);
 
-        $res = $die->getAsString();
+        $res = $this->die->getAsString();
 
         $this->assertEquals("1", $res);
     }
@@ -41,13 +45,13 @@ class DiceTest extends TestCase
      */
     public function testRoll()
     {
-        $die = new Dice();
+        $this->die = new Dice();
 
-        $die->setDice(100);
+        $this->die->setDice(100);
 
-        $die->roll();
+        $this->die->roll();
 
-        $res = $die->getDice();
+        $res = $this->die->getDice();
 
         $this->assertGreaterThan(0, $res);
         $this->assertLessThan(7, $res);

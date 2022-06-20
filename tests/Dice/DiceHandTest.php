@@ -9,14 +9,17 @@ use PHPUnit\Framework\TestCase;
  */
 class DiceHandTest extends TestCase
 {
+
+    protected DiceHand $diceHand;
+
     /**
      * Construct object and verify that the object has the expected
      * properties, use no arguments.
      */
     public function testCreateDiceHand()
     {
-        $diceHand = new DiceHand();
-        $this->assertInstanceOf("\App\Dice\DiceHand", $diceHand);
+        $this->diceHand = new DiceHand();
+        $this->assertInstanceOf("\App\Dice\DiceHand", $this->diceHand);
     }
 
     /**
@@ -25,10 +28,10 @@ class DiceHandTest extends TestCase
 
      public function testAddDice()
      {
-        $diceHand = new DiceHand();
-        $diceHand->add(new Dice());
+        $this->diceHand = new DiceHand();
+        $this->diceHand->add(new Dice());
 
-        $res = $diceHand->getNumberDices();
+        $res = $this->diceHand->getNumberDices();
 
         $this->assertEquals(1, $res);
 
@@ -39,10 +42,10 @@ class DiceHandTest extends TestCase
       */
       public function testGetAsString()
       {
-        $diceHand = new DiceHand();
-        $diceHand->add(new Dice());
+        $this->diceHand = new DiceHand();
+        $this->diceHand->add(new Dice());
 
-        $res = $diceHand->getAsString();
+        $res = $this->diceHand->getAsString();
         $this->assertNotEmpty($res);
       }
 

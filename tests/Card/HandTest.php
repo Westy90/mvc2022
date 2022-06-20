@@ -17,8 +17,8 @@ class HandTest extends TestCase
      */
     public function testCreateHand()
     {
-        $hand = new Hand();
-        $this->assertInstanceOf("\App\Card\Hand", $hand);
+        $this->hand = new Hand();
+        $this->assertInstanceOf("\App\Card\Hand", $this->hand);
 
         $deckArray = [
             'clubs' => [1,2,3],
@@ -29,11 +29,11 @@ class HandTest extends TestCase
 
         foreach ($deckArray as $suit=>$values) {
             foreach ($values as $value) {
-                $hand->add(new \App\Card\Card($suit, $value));
+                $this->hand->add(new \App\Card\Card($suit, $value));
             }
         }
 
-        $res = $hand->getSumArray();
+        $res = $this->hand->getSumArray();
         $this->assertNotEmpty($res);
     }
 
@@ -43,7 +43,7 @@ class HandTest extends TestCase
      */
     public function testshowCardsArray()
     {
-        $hand = new Hand();
+        $this->hand = new Hand();
 
         $deckArray = [
             'clubs' => [1,2],
@@ -52,13 +52,13 @@ class HandTest extends TestCase
 
         foreach ($deckArray as $suit=>$values) {
             foreach ($values as $value) {
-                $hand->add(new \App\Card\Card($suit, $value));
+                $this->hand->add(new \App\Card\Card($suit, $value));
             }
         }
 
         $array = array(array("clubs" => 1), array("clubs" => 2), array("hearts" => 7), array("hearts" => 9));
 
-        $res = $hand->showCardsArray();
+        $res = $this->hand->showCardsArray();
         $this->assertEquals($array, $res);
         //
     }
@@ -68,7 +68,7 @@ class HandTest extends TestCase
      */
     public function testGetSumArray()
     {
-        $hand = new Hand();
+        $this->hand = new Hand();
 
         $deckArray = [
             'clubs' => [1,2],
@@ -77,13 +77,13 @@ class HandTest extends TestCase
 
         foreach ($deckArray as $suit=>$values) {
             foreach ($values as $value) {
-                $hand->add(new \App\Card\Card($suit, $value));
+                $this->hand->add(new \App\Card\Card($suit, $value));
             }
         }
 
         $array = array(19,32);
 
-        $res = $hand->getSumArray();
+        $res = $this->hand->getSumArray();
         $this->assertEquals($array, $res);
     }
 }
