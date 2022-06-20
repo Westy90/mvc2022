@@ -187,7 +187,6 @@ class TrainLibraryController extends AbstractController
      * )
      */
     public function updateTrain(
-        ManagerRegistry $doctrine,
         TrainLibraryRepository $TrainLibraryRepository,
         int $id
     ): Response {

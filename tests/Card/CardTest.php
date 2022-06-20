@@ -9,6 +9,8 @@ use PHPUnit\Framework\TestCase;
  */
 class CardTest extends TestCase
 {
+    protected Card $card;
+
     /**
      * Construct object and verify that the object has the expected
      * properties, use two arguments, spades and 5.

@@ -9,6 +9,9 @@ use PHPUnit\Framework\TestCase;
  */
 class PlayerTest extends TestCase
 {
+
+    protected Player $player;
+
     /**
      * SetUp-method
      * Construct object and add cards

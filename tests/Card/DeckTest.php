@@ -9,6 +9,9 @@ use PHPUnit\Framework\TestCase;
  */
 class DeckTest extends TestCase
 {
+
+    protected Deck $deck;
+
     /**
      * SetUp-method
      * Construct object and add cards

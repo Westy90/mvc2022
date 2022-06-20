@@ -9,6 +9,8 @@ use PHPUnit\Framework\TestCase;
  */
 class HandTest extends TestCase
 {
+    protected Hand $hand;
+
     /**
      * Construct object and verify that the object has the expected
      * properties, an array of cards is then added.
