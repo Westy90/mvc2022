@@ -202,7 +202,36 @@ objekt direkt. Det uppfattar jag inte var tydligt i guiderna och föreläsningar
 
 <h1> KMOM06 </h1>
 
-<p> </p>
+<p> Det jag tycker var nyttigast i phpmetrics var att kunna se kodkomplexiteten och se vilka
+    områden som är problematiska. Det visas ju också tydligt på den genererade sidan med 
+    bubblorna. Som jag är på i rapporten så anser jag dock att siffrona måste sättas i sitt
+    sammanhang vad det programmet ska göra, och inte bara titta på komplexiteten. Ett avancerat 
+    program med komplexiteten 10 kan vara "bättre skriven" än ett enkelt program med komplexiteten 5.
+    Men det är ändå bra att kunna mäta komplexiteten och göra förändringar för att det efter se
+    om det har resulterar i en förbättring. Det jag också uppskattade med phpmetrics var att
+    den hade avgränsat till bara min kod och inte ramverkets kod, för det uppfattade jag
+    som en stor nackdel med scrutinizer att den tog allt, inklusive delar som jag nu inte
+    har förståelse kring eller kan påverka, det vill säga delarna kopplat till ramverket.
+</p>
+
+<p>
+    Vid min första uppladdning så fick jag 6.15 i overall score, 16% i testscore, build passed.
+    När jag gjorde mina förändringar så blev overall score det samma, men testscore ökade till 19%.
+    Som jag är inne på i stycket om phpmetrics så beror nog det oförändrade overall score på att
+    min kod är en väldigt liten del av hela programmet vilket gör att förändringar inte påverkar så mycket.
+    Samtidigt är det ju så att jag försökte minska komplexiteten utan att lyckas vilket också då
+    såklart inte ger någon påverkan på min score.
+</p>
+
+<p> Vad gäller kodkvalitet så är det som sagt, att det måste sättas i sitt sammanhang för att kunna dra slutsatser.
+    Och kanske är det väl "mot sig själv" man bör jämföra och förbättra. Att ett annat program har bättre score
+    betyder inte nödvändigtvis att det är ett bätte program. Ett bugfritt program med tydlig kod samt löser
+    sitt syfte är väl det man vill uppnå egentligen. Inte ett särskilt komplexitetstal. Sedan är det ju också
+    en resurs och kostnadsfråga. Att försöka göra ett litet projekt "perfekt" när en kund har satt ett visst
+    belopp/tidsgräns som då gör att man misslyckas leverera i tid för att man lägger ned för mycket tid på att 
+    göra perfekt kod enligt testerna är ju inte heller bra! På så sätt är det ju lite fånigt att ha badges på en sida
+    när det egentligen inte är det som är det viktiga.
+</p>
 
 <h1> KMOM10 </h1>
 
