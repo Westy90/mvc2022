@@ -34,7 +34,7 @@ Här presenteras texten för rapporten för kursmoment 6, phpmetrics och Scrutin
 <p>
     Den andra delen av complexity är Cyclomatic Complexity, som innebär hur många programflödesstyrande satser det finns i 
     koden. Exempel på sådana är if-satser, loopar och funktionsanrop. Det kan också beskrivs som
-    hur många gånger programmet kan ta olika riktningar/alternativ. Det är eftersträvansvärt att ha så låg 
+    hur många gånger programmet kan ta olika riktningar/alternativ. Det är eftersträvansvärt att ha så låg
     cyclomatic complexity som möjligt. Detta är nog likt argumenten gällande rader kod. Det är dels
     en resursfråga men också en fråga gällande hur lätt koden är att begripa och debugga, där lägre cyclomatic complexity 
     är att föredra.
@@ -110,7 +110,6 @@ klasser med låg Cohesion ger upphov till sidoeffekter.
         och det är att de inte tittar kvalitativt analytiskt utan bara kvantitativt utifrån sina riktmärken. Hur som helst 
         så hade jag ju en dialog med MOS gällande denna Controller och vi kom fram till att den ändå var okej utformad.
     </p>
-    svagheter
 
 
 
@@ -150,8 +149,9 @@ klasser med låg Cohesion ger upphov till sidoeffekter.
         som en komplexitet? Högst oklart... Det är dock så att Scrutinizer ändå betydersätter metoden med A, även 
         om den har högst komplexitet jämfört med de andra klasserna. Dock tror jag att gränsen är 20, så det kan vara
         förklaringen.
-
     </p>
+
+    <p> Min Scrutnizer visar inga värden för coupling och cohesion</p>
 
     <p>
         Under issues finns det ett antal problem som Srutinizer har hittat, så som unused code,
@@ -179,29 +179,71 @@ klasser med låg Cohesion ger upphov till sidoeffekter.
     först deklarera värdet enligt det högsta, och sen köra en if-sats som kollar om det högsta
     är över 21 för att sedan ändra till det lägre värdet så minskade jag antalet kontrollsatser.
     Jag tog även bort en nestlad if-sats. Enligt scrutinizer så hade game 27 i komplexitet innan
-    men förändringen gjorde ändå inte att komplexiteten minskades, så jag är 
-    lite osäker kring hur Scrutinizer räknar komplexitet. Man kanske är det så 
+    men förändringen gjorde ändå inte att komplexiteten minskades, så jag är
+    lite osäker kring hur Scrutinizer räknar komplexitet. Man kanske är det så
     att else-delen i en ifsats inte räknas som en ökad komplexitet.
 
-    Enligt phpmetrics så gavs Game innan förändringarna komplexitet, 17, och lägst 
+    Enligt phpmetrics så gavs Game innan förändringarna komplexitet, 17, och lägst
     maintainability, 46.63. I phpmetrics så förändrades inte heller komplexiteten,
-    men däremot sjönk maintainability lite, till 46,13. Så min förändring gjorde 
+    men däremot sjönk maintainability lite, till 46,13. Så min förändring gjorde
     ingen skillnad eller till och med försämring.. Samtidigt vet jag inte hur jag ska göra
-    game mindre komplex, hittar ingen annan del i koden som vore kandidat.
+    game mindre komplex, hittar ingen annan del i koden som vore kandidat. Så detta blev ju ingen
+    förbättring, men var ändå ett försök till förbättring?
 
 </p>
 
 <p>
-    Jag gjorde förbättringen kring att ta bort unused code som står i några stycken upp samt la till
-    medlemsvariabler för testerna. Det gav dock ingen förändring i det Scrutinizers övergripande poäng.
-    Men antalet issues minskades med 4 stycken.
+    Jag gjorde förbättringen kring att ta bort unused code (förbättring med sju stycken åtgärder
+    som står i några stycken upp samt la till medlemsvariabler för testerna. Scrutininzer gav nämligen
+    rekommendation på att medlemsvariabler bör deklareras explecit. Antalet issues gällande deklarerade
+    medlemsvariabler minskades med 4 stycken.  Det gav dock ingen förändring i det Scrutinizers övergripande poäng.
+
 </p>
-
-
 
 <p>
-    Jag har ökat code coverage genom att göra flera tester...
+    Jag har ökat code coverage genom att göra enhetstester för DiceHand, DiceGraphic och Dice.
+    Genom detta så har min Testcovarage ökat till 19%, från tidigare 15,8%. Jag har nu 81,82%
+    respektive 88.89% kodtäckning på mina klasser inom namespacet Card/ respektive Dice/.
 </p>
+
+
+<h1>Diskussion</h1>
+<p>
+    Jag tror nog att det framåt kommer bli naturligt att jobba med kodkvalitet för min del. Det känns som att särskilt
+    Scrutinizer gav tydliga och vettiga förslag på vad som kunde förbättras. Just nu känns det spontant
+    lite svårt att hitta och få det som ett naturligt flöde, men i framtiden. Själva verktyget Scrutinizer var smidigt 
+    att den tittar på min github och uppdaterar den och visar vad det gjorts för förändringar. Mycket bra.
+</p>
+
+<p>
+    Det jag finner lite kneigt är cohesion och coupling i och med att som jag förstår det inom objektorientering så
+    uppmuntras det att klasser är specialiserade och gör endast en sak. Exempelvis att korten är av klassen kort och sedan
+    så finns det en klass som hanterar kortet, ex håller dom i en hand, delar ut, etc. Det gör ju automatiskt att det blir 
+    högre cohesion, coupling och beroende mellan klasserna. Så att stirra sig blind på de värdena och tänka att man ska ha
+    så lågt som möjligt tror jag inte är rätt, då är det bättre att försöka tänka utifrån vad varje klass har för syfte.
+    För man får nog ändå tänka att scrutinizer och phpmetrics ändå är lite "dumma" och endast följer sina mätvärden. Att ett mätvärde 
+    är högt måste inte nödvändgtvis innebära att koden är "dålig"
+</p>
+
+<p>
+    Jag ser ju också att detta är likt på sätt och vis hur validatorer fungerar. Att det är en mekanism som är till för att 
+    hjälpa programmeraren att skriva bättre kod så att det är lättare att gå tillbaka till koden om den är bra skriven, alternativt
+    om man jobbar i ett team och flera ska vara inne i koden så är det ju bra om koden är lättläst och tydlig.
+</p>
+
+<p> 
+    Det som jag upplever är lite tråkigt är väl kanske att jag gjorde en ansats att minska komplexiteten men att det ändå
+    inte gav någon minskad komplexitet. Samtidigt så lyckades jag inte hitta några alternativa sätt att minska komplexiteten.
+    SÅ då blir man ju nyfiken om jag har krånglat till det i onödan eller om det faktiskt inte går att göra det mindre komplext.
+    Det ger ju faktiskt inte phpmetrics/scrutinizer svar på, de beskriver ju endast vilket värde det är och inte om det är det lägsta möjliga.
+    Så jag tänker väl tillbaka på det exemplet som MOS visade på föreläsningen, att CIMAGE hade väldigt dåliga värden.
+    Samtidgt kan det ju faktiskt vara så att det programmet har väldigt god kodstruktur och så vidare, men att mätvärdena
+    inte tar hänsyn till att det är komplext program. Ett komplext program har ju antagligen högre komplexitet än ett enkelt program.
+    Men det blir ju lite orättvist att mäta båda mot samma mått och sedan hårt dra att över 20 i komplexitet är dåligt, för det 
+    beror ju som sagt på vad det är för uppgift som programmet ska lösa.. Det borde vara ett releativt mått anser jag istället för 
+    hårddraget.
+</p>
+
 
 
 
