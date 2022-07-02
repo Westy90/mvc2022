@@ -45,14 +45,13 @@ class Overcrowding2Repository extends ServiceEntityRepository
         }
     }
 
-    // /**
-    //  * @return Overcrowding2[] Returns an array of Overcrowding2 objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @return Overcrowding2[] Returns an array of Overcrowding2 objects
+     */
+    public function findByType($value)
     {
         return $this->createQueryBuilder('o')
-            ->andWhere('o.exampleField = :val')
+            ->andWhere('o.type = :val')
             ->setParameter('val', $value)
             ->orderBy('o.id', 'ASC')
             ->setMaxResults(10)
@@ -60,7 +59,7 @@ class Overcrowding2Repository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
+
 
     /*
     public function findOneBySomeField($value): ?Overcrowding2

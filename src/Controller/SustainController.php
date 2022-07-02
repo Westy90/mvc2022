@@ -18,9 +18,14 @@ use Symfony\Component\Routing\Annotation\Route;
 
 use App\Sustain\Sustain;
 
+//Php office
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Reader\IReader;
+
+//Charts
+use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
+use Symfony\UX\Chartjs\Model\Chart;
 
 class SustainController extends AbstractController
 {
@@ -51,7 +56,7 @@ class SustainController extends AbstractController
 
         $this->addFlash("info", 'The database is now resetted');
 
-        //return $this->render('excel/read.html.twig', $data);
+        //return $this->render('sustain/read.html.twig', $data);
         return $this->redirectToRoute('proj');
     }
 
@@ -60,13 +65,13 @@ class SustainController extends AbstractController
     public function index(Overcrowding2Repository $Overcrowding2Repository): Response
     {
         $dataArray = $Overcrowding2Repository
-            ->findAll();
+            ->findByType("Samtliga 16-84 år");
+        //->findAll();
 
 
 
             $firstRow = min(array_keys($dataArray));
             $lastRow = max(array_keys($dataArray));
-
 
 
             $data = [
@@ -79,7 +84,71 @@ class SustainController extends AbstractController
             'controller_name' => 'TrainLibraryController'
         ];
 
-        return $this->render('excel/read.html.twig', $data);
+        return $this->render('sustain/read.html.twig', $data);
+    }
+
+
+
+    #[Route('/chart', name: 'chart')]
+    public function chart(
+        ChartBuilderInterface $chartBuilder,
+        Overcrowding2Repository $Overcrowding2Repository
+        ): Response
+    {
+        $chart = $chartBuilder->createChart(Chart::TYPE_LINE);
+
+        $dataArray = $Overcrowding2Repository
+        ->findByType("Samtliga 16-84 år");
+
+        foreach ($dataArray as $data) {
+
+            $labels[] = $data->getYear();
+            $dataPercentage[0][] = $data->getPercentage();
+
+        }
+
+        $dataArray = $Overcrowding2Repository
+        ->findByType("Kvinnor 16-84 år");
+
+        foreach ($dataArray as $data) {
+            $dataPercentage[1][] = $data->getPercentage();
+
+        }
+
+
+        $chart->setData([
+            'labels' => $labels,
+            'datasets' => [
+                [
+                    'label' => 'Samtliga 16-84 år',
+                    'backgroundColor' => 'rgb(255, 99, 132)',
+                    'borderColor' => 'rgb(255, 99, 132)',
+                    'data' => $dataPercentage[0],
+                ],
+                [
+                    'label' => 'Kvinnor 16-84 år',
+                    'backgroundColor' => 'rgb(0, 18, 102)',
+                    'borderColor' => 'rgb(0, 18, 102)',
+                    'data' => $dataPercentage[1],
+                ],
+            ],
+        ]);
+
+
+
+        $chart->setOptions([
+            'scales' => [
+                'y' => [
+                    'suggestedMin' => 0,
+                    'suggestedMax' => 25,
+                ],
+            ],
+        ]);
+
+
+        return $this->render('sustain/chart.html.twig', [
+            'chart' => $chart,
+        ]);
     }
 
     /**

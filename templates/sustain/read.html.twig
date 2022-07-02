@@ -1,0 +1,41 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Dice{% endblock %}
+
+
+
+{% block content %}
+
+{{ dump(dataArray) }}
+{{ dump(firstRow) }}
+{{ dump(lastRow) }}
+{{ dump(test) }}
+
+<h1>{{ title }}</h1>
+
+<p>Use the navbar below to navigate through the pages related to Card Deck:</p>
+
+<table>
+    <tr>
+        {% for field in dataArray[firstRow] %}
+            <th>{{field}}</th>
+
+        {% endfor %}
+    </tr>
+
+
+        {% for x in firstRow + 1 .. lastRow %}
+            <tr>
+                {% for field in dataArray[x] %}
+
+                <td>
+                    {{field}}
+                </td>
+
+                {% endfor %}
+            </tr>
+        {% endfor %}
+
+</table>
+
+{% endblock %}
