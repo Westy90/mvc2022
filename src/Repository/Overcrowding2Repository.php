@@ -48,17 +48,20 @@ class Overcrowding2Repository extends ServiceEntityRepository
     /**
      * @return Overcrowding2[] Returns an array of Overcrowding2 objects
      */
-    public function findByType($value)
+    public function findByType($value, $norm)
     {
         return $this->createQueryBuilder('o')
-            ->andWhere('o.type = :val')
-            ->setParameter('val', $value)
+            ->andWhere('o.type = :val', 'o.norm = :val2')
+            //->setParameter('val', $value, 'val2', $norm)
+            ->setParameters(['val' => $value, 'val2' => $norm])
             ->orderBy('o.id', 'ASC')
-            ->setMaxResults(10)
+            ->setMaxResults(20)
             ->getQuery()
             ->getResult()
         ;
     }
+
+
 
 
     /*

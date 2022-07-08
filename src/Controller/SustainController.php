@@ -65,7 +65,7 @@ class SustainController extends AbstractController
     public function index(Overcrowding2Repository $Overcrowding2Repository): Response
     {
         $dataArray = $Overcrowding2Repository
-            ->findByType("Samtliga 16-84 år");
+            ->findByType("Samtliga 16-84 år", 2);
         //->findAll();
 
 
@@ -91,63 +91,20 @@ class SustainController extends AbstractController
 
     #[Route('/chart', name: 'chart')]
     public function chart(
+        ManagerRegistry $doctrine,
         ChartBuilderInterface $chartBuilder,
         Overcrowding2Repository $Overcrowding2Repository
         ): Response
     {
-        $chart = $chartBuilder->createChart(Chart::TYPE_LINE);
-
-        $dataArray = $Overcrowding2Repository
-        ->findByType("Samtliga 16-84 år");
-
-        foreach ($dataArray as $data) {
-
-            $labels[] = $data->getYear();
-            $dataPercentage[0][] = $data->getPercentage();
-
-        }
-
-        $dataArray = $Overcrowding2Repository
-        ->findByType("Kvinnor 16-84 år");
-
-        foreach ($dataArray as $data) {
-            $dataPercentage[1][] = $data->getPercentage();
-
-        }
 
 
-        $chart->setData([
-            'labels' => $labels,
-            'datasets' => [
-                [
-                    'label' => 'Samtliga 16-84 år',
-                    'backgroundColor' => 'rgb(255, 99, 132)',
-                    'borderColor' => 'rgb(255, 99, 132)',
-                    'data' => $dataPercentage[0],
-                ],
-                [
-                    'label' => 'Kvinnor 16-84 år',
-                    'backgroundColor' => 'rgb(0, 18, 102)',
-                    'borderColor' => 'rgb(0, 18, 102)',
-                    'data' => $dataPercentage[1],
-                ],
-            ],
-        ]);
+        $databaseHandler = new Sustain($doctrine, $Overcrowding2Repository, $chartBuilder);
 
-
-
-        $chart->setOptions([
-            'scales' => [
-                'y' => [
-                    'suggestedMin' => 0,
-                    'suggestedMax' => 25,
-                ],
-            ],
-        ]);
-
+        $chart = $databaseHandler->makeChart();
 
         return $this->render('sustain/chart.html.twig', [
             'chart' => $chart,
+            'toDump' => "none",
         ]);
     }
 
