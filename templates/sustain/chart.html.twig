@@ -1,4 +1,4 @@
-{% extends "base.html.twig" %}
+{% extends "baseSustain.html.twig" %}
 
 {% block title %}Dice{% endblock %}
 
@@ -8,6 +8,34 @@
 
 {{ dump(toDump) }}
 
-{{ render_chart(chart) }}
+<div class="charts">
+
+    <div class="leftChart">
+        <p> Lite text, lite text, lite text Lite text, lite text, lite text Lite text, lite text, lite text Lite text, lite text, lite text
+            Lite text, lite text, lite textLite text, lite text, lite textLite text, lite text, lite textLite text, lite text, lite 
+            textLite text, lite text, lite text
+            <br><br>
+            Lite text, lite text, lite textLite text, lite text, lite textLite text, lite text, lite textLite text, lite text, lite text
+            Lite text, lite text, lite textLite text, lite text, lite textLite text, lite text, lite textLite text, lite text, lite text
+            Lite text, lite text, lite textLite text, lite text, lite textLite text, lite text, lite textLite text, lite text, lite text
+        </p>
+    {{ render_chart(chart) }}
+    </div>
+
+
+    <div class="leftChart">
+        <p> Lite text, lite text, lite text Lite text, lite text, lite text Lite text, lite text, lite text Lite text, lite text, lite text
+            Lite text, lite text, lite textLite text, lite text, lite textLite text, lite text, lite textLite text, lite text, lite 
+            textLite text, lite text, lite text
+            <br><br>
+            Lite text, lite text, lite textLite text, lite text, lite textLite text, lite text, lite textLite text, lite text, lite text
+            Lite text, lite text, lite textLite text, lite text, lite textLite text, lite text, lite textLite text, lite text, lite text
+            Lite text, lite text, lite textLite text, lite text, lite textLite text, lite text, lite textLite text, lite text, lite text
+        </p>
+    {{ render_chart(chart) }}
+    </div>
+
+</div>
+
 
 {% endblock %}

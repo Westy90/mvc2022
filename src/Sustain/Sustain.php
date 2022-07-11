@@ -128,7 +128,6 @@ class Sustain
                 $datasets[$i]['data'][] = $data->getPercentage();
             }
 
-
         }
 
         $chart->setData([
